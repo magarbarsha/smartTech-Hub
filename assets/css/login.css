@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #7a8387, #d0d4de);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Login Container */
+.login-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.logo img {
+    width: 50px;
+}
+
+/* Form Elements */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    background: #0044ff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0022aa;
+}
+
+.google-login {
+    background: #db4437;
+}
+
+/* Links */
+.links a {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #0044ff;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.divider {
+    margin: 15px 0;
+    font-weight: bold;
+}

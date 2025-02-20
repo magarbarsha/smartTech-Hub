@@ -1,0 +1,414 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
+    padding: 15px 30px;
+    color: white;
+}
+.navbar p {
+    font-size: 20px;
+}
+
+.navbar i {
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #0056b3;
+    color: white;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.sidebar .links a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #f5f5f5;
+    border-bottom: 1px solid #303f5c;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .links a:hover {
+    background-color: #303f5c;
+    color: #00acee;
+}
+
+.sidebar .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Dashboard Content Section */
+.dashboard-content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.dashboard-content .card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card .amount {
+    font-size: 30px;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+.card i {
+    font-size: 40px;
+    color: #007bff;
+    margin-top: 20px;
+}
+@media (max-width: 1200px) {
+    .dashboard-content .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .dashboard-content .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-content .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .dashboard-content {
+        margin-left: 0;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+}
+/* form style */
+input[type="text"]{
+  width:100%;
+  padding: 10px;
+  margin:10px 0;
+  border-radius: 5px;
+  border:1px solid black;
+  height: auto;
+
+}
+input[type="search"]{
+  width:50%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:5px;
+  border:1px solid black;
+  height:auto;
+  float:right;
+  background-color:blue;
+  color: white;
+}
+
+  
+  .form-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .sign-in-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .message {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .message a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .message a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 15px 20px;
+    }
+  
+    .sign-in-form {
+      gap: 10px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  }
+  /* General styling for the form container */
+.dashboard-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 30px; /* Ensure space between navbar and form */
+}
+
+/* Form container */
+form {
+  display: grid;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields Styling */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Focus Effect */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #5e72e4;
+  outline: none;
+}
+
+/* Textarea Styling */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button Styling */
+input[type="submit"] {
+  background-color: #5e72e4;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover Effect for Submit Button */
+input[type="submit"]:hover {
+  background-color: #4b61c6;
+}
+
+/* Responsive Styles for smaller screens */
+@media screen and (max-width: 768px) {
+  .dashboard-content {
+      padding: 15px;
+  }
+
+  form {
+      max-width: 100%;
+      padding: 15px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"],
+  textarea,
+  select {
+      padding: 10px;
+  }
+
+  input[type="submit"] {
+      font-size: 14px;
+      padding: 10px;
+  }
+}
+
+/* Label Styling */
+label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Select Dropdown Styling */
+select {
+  padding: 12px;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+/* File Input Styling */
+input[type="file"] {
+  padding: 10px 0;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+
+/* File Input Hover Effect */
+input[type="file"]:hover {
+  cursor: pointer;
+}
+
+/* Option Styling */
+option {
+  padding: 10px;
+}
+
+/* Helper text for validation error */
+.error-message {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Heading Styling */
+h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}

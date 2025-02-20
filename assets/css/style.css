@@ -1,0 +1,148 @@
+/* General body and layout settings */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar and Content Wrapper */
+.dashboard-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Form Container */
+form {
+    display: grid;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields Styling */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #5e72e4;
+    outline: none;
+}
+
+/* Textarea Styling */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button Styling */
+input[type="submit"] {
+    background-color: #5e72e4;
+    color: #ffffff;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #4b61c6;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .dashboard-content {
+        padding: 15px;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    textarea,
+    select {
+        padding: 10px;
+    }
+
+    input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Label Styling */
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Select Dropdown Styling */
+select {
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+/* File Input Button */
+input[type="file"] {
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+/* File Input Change Button */
+input[type="file"]:hover {
+    cursor: pointer;
+}
+
+/* Option Styling */
+option {
+    padding: 10px;
+}
+
+/* Helper text for validation error */
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Heading Styling */
+h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}

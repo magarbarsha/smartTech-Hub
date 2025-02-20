@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
+    padding: 15px 30px;
+    color: white;
+}
+.navbar p {
+    font-size: 20px;
+}
+
+.navbar i {
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #0056b3;
+    color: white;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.sidebar .links a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #f5f5f5;
+    border-bottom: 1px solid #303f5c;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .links a:hover {
+    background-color: #303f5c;
+    color: #00acee;
+}
+
+.sidebar .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+
+   /* General Reset for Cross-Browser Consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7fc;
+    color: #333;
+    line-height: 1.7;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Dashboard Content Section */
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Form Styling */
+form {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #5c6bc0;
+    background-color: #fff;
+}
+
+form input[type="submit"] {
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(92, 107, 192, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #3f51b5;
+    transform: translateY(-2px);
+}
+
+/* Search Box Styling */
+.search {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
+}
+
+.search input[type="search"] {
+    width: 80%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background-color: #f9f9f9;
+    transition: 0.3s ease;
+}
+
+.search input[type="search"]:focus {
+    border-color: #5c6bc0;
+    background-color: #fff;
+    outline: none;
+}
+
+.search input[type="submit"] {
+    width: 18%;
+    padding: 12px;
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search input[type="submit"]:hover {
+    background-color: #3f51b5;
+    transform: translateY(-2px);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #5c6bc0;
+    color: rgb(14, 13, 13);
+    font-size: 1.1rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table td a {
+    text-decoration: none;
+    color: #5c6bc0;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: rgba(92, 107, 192, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table td a:hover {
+    background-color: rgba(92, 107, 192, 0.2);
+    color: #3f51b5;
+}
+
+/* Hover Effects for Links and Buttons */
+table td a,
+input[type="submit"],
+button {
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+table td a:hover,
+input[type="submit"]:hover,
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .dashboard-content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .search {
+        width: 90%;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    table th, table td {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    table td a {
+        font-size: 1rem;
+        padding: 4px 8px;
+    }
+
+    header {
+        font-size: 1.8rem;
+        padding: 15px 0;
+    }
+}
+
+/* Smooth Transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Unique Styling for Buttons and Links */
+button,
+input[type="submit"] {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 15px;
+    transition: 0.3s ease;
+}
+
+/* Additional Custom Styles for a polished design */
+.dashboard-content {
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.05);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
