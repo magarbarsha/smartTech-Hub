@@ -48,7 +48,7 @@
             <ul>
                 <li><a href="index2.php">HOME</a></li>
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle">PRODUCTS</a>
+                <a href="../admin/dynamicproduct.php" class="dropdown-toggle">PRODUCTS</a>
                 
             </li>
                 <li><a href="laptops.php">GAMING LAPTOPS</a></li>

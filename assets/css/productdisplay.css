@@ -125,3 +125,175 @@ td a.delete:hover {
 .add-product-btn:hover {
     background-color: #007bff;
 }
+/* General Style for the Add Product Button */
+.add-product-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #FF6347;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-product-btn:hover {
+    background-color: #e5533c;
+    transform: scale(1.05);
+}
+
+/* Product Container Styling (Flexbox for layout) */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Product Card Styling */
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; /* Fixed height for uniformity */
+}
+
+.product-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Title Styling */
+.product-card h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.product-card:hover h3 {
+    color: #FF6347;
+}
+
+/* Image Container */
+.product-img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    height: 180px; /* Smaller height for images */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Product Information */
+.product-info p {
+    color: #555;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.product-info p strong {
+    color: #333;
+}
+
+/* Product Actions (Buttons) */
+.product-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+/* Action Buttons Styling */
+.cart-btn, .wishlist-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #FF6347;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 48%;
+}
+
+.cart-btn:hover, .wishlist-btn:hover {
+    background-color: #e5533c;
+    transform: scale(1.05);
+}
+
+.cart-btn {
+    background-color: #28a745;
+}
+
+.cart-btn:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .product-card {
+        width: 90%; /* Wider cards on small screens */
+    }
+
+    .cart-btn, .wishlist-btn {
+        width: 48%; /* Buttons fit the card width */
+    }
+}
+
+@media (max-width: 480px) {
+    .add-product-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    }
+
+    .product-card {
+        width: 100%; /* Full width cards on mobile */
+    }
+
+    .cart-btn, .wishlist-btn {
+        width: 48%; /* Buttons fit the card width */
+    }
+}
