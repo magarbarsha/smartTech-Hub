@@ -86,6 +86,11 @@
     </div>
             <!-- More cards can be added here -->
         </div>
+        <?php
+            if(isset($_REQUEST['msg'])){
+                echo $_REQUEST['msg'];
+            }
+            ?>
     </div>
 
     <script src="../assets/js/dashboard_script.js"></script>

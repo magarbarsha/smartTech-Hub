@@ -37,9 +37,9 @@
             </div>
 
             <div class="nav-icons">
-                <a href="signinAdd.php" aria-label="User Account"><i class="fa-regular fa-user"></i></a>
+                <a href="../login.php" aria-label="User Account"><i class="fa-regular fa-user"></i></a>
                 <a href="#" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
-                <a href="shoppingcard.php" aria-label="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="checkoutpage.php" aria-label="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
             </div>
         </nav>

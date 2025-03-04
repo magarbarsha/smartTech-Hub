@@ -5,20 +5,20 @@ require './includes/config.php';
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $sql = "SELECT * FROM students WHERE email = '$email'";
+    $sql = "SELECT * FROM user WHERE email = '$email'";
     $res = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($res);
     if ($num > 0) {
         $row = mysqli_fetch_assoc($res);
         $role = $row['role'];
-        if (password_verify($password, $row['pass'])) {
+        if (password_verify($password, $row['password'])) {
             $_SESSION['id'] = $row['id'];
             $_SESSION['role'] = $row['role'];
             if ($role == 'admin') {
-                header('location: ./admin/studentDisplay.php');
+                header('location: ./admin/dashboard.php');
             }
             if ($role == 'user') {
-                header('location: ./user/studentdashboard.php');
+                header('location: ./component/index2.php');
             }
         } else {
             echo "Password donot match";
@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
             <p>Your digital gateway to the future</p>
         </div>
         <div class="form-container">
-            <form id="loginForm" action="login2.php" method="POST">
+            <form id="loginForm" action="" method="POST">
                 <div class="input-group">
                     <label for="email">Email or Phone Number</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email or phone" required>
@@ -65,7 +65,7 @@ if (isset($_POST['login'])) {
                 </div>
 
                 <div class="submit-container">
-                    <input type="submit" name="submit">Login</>
+                    <input type="submit" name="login">Login</>
                 </div>
             </form>
 

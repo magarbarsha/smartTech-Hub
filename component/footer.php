@@ -245,10 +245,10 @@
         <div class="footer-bottom">
             <p>&copy; <span id="year"></span> SmartTech Hub. All Rights Reserved.</p>
             <div class="payment-methods">
-                <img src="cash.png" alt="Cash on Delivery">
-                <img src="esewa.png" alt="eSewa">
+                <img src="./images/cash.png" alt="Cash on Delivery">
+                <img src="./images/esewa.png" alt="eSewa">
                 <img src="fonepay.png" alt="FonePay">
-                <img src="ips.png" alt="IPS">
+                <img src="./images/kalti.jpeg" alt="IPS">
             </div>
         </div>
     </footer>
