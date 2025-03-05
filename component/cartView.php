@@ -10,145 +10,7 @@ include '../includes/config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Reset Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        thead {
-            background-color: #343a40;
-            color: white;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            font-weight: 600;
-        }
-
-        td img {
-            width: 60px;
-            height: 80px;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            margin-top:20px;
-        }
-
-        .quantity-btn {
-            background-color: #f8b400;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .quantity-btn:hover {
-            background-color: #e0a800;
-        }
-
-        .quantity-input {
-            width: 45px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            padding: 5px;
-            height: 32px;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: red;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .remove-btn:hover {
-            color: darkred;
-        }
-
-        .summary {
-            margin-top: 20px;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .summary div {
-            margin-bottom: 10px;
-        }
-
-        .total-amount {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .proceed-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .proceed-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/cartView.css">
 </head>
 
 <body>
@@ -163,6 +25,7 @@ include '../includes/config.php';
                     <th>Quantity</th>
                     <th>Total</th>
                     <th>Action</th>
+                    <th>removable</th>
                 </tr>
             </thead>
             <tbody id="cart-items">
@@ -178,7 +41,8 @@ include '../includes/config.php';
 
                 if ($num > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
-                        $amount = $row['price'] * $row['quantity'];
+                        $amount = $row['price'] * $row['product_quantity'];
+
                         $totalAmount += $amount;
                         ?>
                         <tr data-id="<?php echo $row['card_id']; ?>" data-price="<?php echo $row['price']; ?>">
@@ -194,14 +58,35 @@ include '../includes/config.php';
                                 <button class="quantity-btn increase">+</button> -->
                                 <form action="./updateCart.php" method="post">
                                     <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
-                                    <input type="number"name="product_quantity" min=1 value="<?php echo $row['product_quantity'] ?>">
+                                    <input type="number" name="product_quantity" min=1
+                                        value="<?php echo $row['product_quantity'] ?>">
                                     <input type="submit" name="updateCart" value="update">
-                              </form>
+                                </form>
                             </td>
-                            <td class="total-price">₹<?php echo number_format($amount, 2); ?></td>
+
+                            <!-- <td class="total-price">₹<?php echo number_format($amount, 2); ?></td>
                             <td><button class="remove-btn">❌</button></td>
-                        </tr>
-                        <?php
+                        </tr> -->
+                            <td class="total-price">
+                                <?php
+
+                                echo "₹" . number_format($amount, 2);
+                                ?>
+                            </td>
+                            <td>
+                            <form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
+                                    <input type="submit" name="remove" value="remove">
+                                </form>
+                            </td>
+<td>
+<form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+                                    <input type="submit" name="removeall" value="removeall">
+                                </form>
+                            </td>
+</td>
+                            <?php
                     }
                 } else {
                     echo "<tr><td colspan='6'>No orders found.</td></tr>";
@@ -214,12 +99,13 @@ include '../includes/config.php';
         <div class="summary">
             <div>Cart Total: ₹<span id="cart-total"><?php echo number_format($totalAmount, 2); ?></span></div>
             <div>Shipping Charges: ₹<span id="shipping"><?php echo number_format($shippingCharge, 2); ?></span></div>
-            <div class="total-amount">Total Amount: ₹<span id="final-total"><?php echo number_format($totalAmount + $shippingCharge, 2); ?></span></div>
+            <div class="total-amount">Total Amount: ₹<span
+                    id="final-total"><?php echo number_format($totalAmount + $shippingCharge, 2); ?></span></div>
             <button class="proceed-btn"><a href="checkoutpage.php">Proceed to Checkout</a></button>
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             const cartItems = document.getElementById("cart-items");
             const cartTotal = document.getElementById("cart-total");
@@ -260,7 +146,7 @@ include '../includes/config.php';
 
             updateTotals();
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

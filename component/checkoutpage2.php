@@ -5,43 +5,247 @@ $selectQuery = "SELECT * FROM `user` WHERE id = $_SESSION[id]";
 $res = mysqli_query($conn, $selectQuery);
 if (mysqli_num_rows($res) > 0) {
     $row = mysqli_fetch_assoc($res);
-    $name = $row['name'];
-    $email = $row['email'];
-    $phone = $row['phone'];
+        $name = $row['name'];
+        $email = $row['email'];
+        $phone = $row['phone'];
+    
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout and Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../assets/css/checkoutpage.css">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-wrapper,
+        .order-wrapper {
+            width: 50%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-wrapper h2,
+        .order-wrapper h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .gender-selection {
+            margin-bottom: 20px;
+        }
+
+        .gender-options input {
+            margin-right: 10px;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .register-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Orders Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background-color: #343a40;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .quantity-btn {
+            background-color: #f8b400;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: red;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .summary {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .total-amount {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .proceed-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .proceed-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Container for buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .register-btn {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .confirm-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background-color: #218838;
+        }
+
+        .reset-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #e53935;
+        }
+        
+    </style>
 </head>
+
 <body>
-  
     <div class="container">
         <!-- Checkout Form -->
         <div class="form-wrapper">
-            <h2>Checkout Page</h2>
+            <h2>Checkout page</h2>
             <form action="" method="post">
                 <div class="input-group">
-                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name" required>
+                    <input type="text" name="name" id="name" value="<?php echo $name ?>" placeholder="Your Name" required>
+                    <label for="name">Username</label>
                 </div>
                 <div class="input-group">
-                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email" required>
+                    <input type="email" name="email" id="email" value="<?php echo $email ?>" placeholder="Your Email" required>
+                    <label for="email">Email</label>
                 </div>
                 <div class="input-group">
-                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone" required>
+                    <input type="number" name="phone" id="phone" value="<?php echo $phone ?>" placeholder="Your Phone" required>
+                    <label for="phone">Phone</label>
+                </div>
+
+            
                 </div>
                 <div class="button-container">
+                    <!-- Confirm Order Button (Left) -->
                     <button type="submit" name="register" class="register-btn confirm-btn">Confirm Order</button>
+
+                    <!-- Reset Button (Right) -->
                     <button type="reset" class="register-btn reset-btn">Reset</button>
                 </div>
             </form>
         </div>
 
+        <!-- My Orders Table -->
         <div class="order-wrapper">
             <h3>My Orders</h3>
             <table>
