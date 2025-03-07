@@ -9,7 +9,8 @@ if(isset($_POST['register'])){
   if ($password === $confirm_password) {
     $hashed_pass=password_hash($password, PASSWORD_DEFAULT);
     $gender=$_POST['gender'];
-    $sql="INSERT INTO user (name,email,phone,password,gender) VALUES ('$name','$email','$phone','$hashed_pass','$gender')";
+    $address=$_POST['address'];
+    $sql="INSERT INTO user (name,email,phone,password,gender,address) VALUES ('$name','$email','$phone','$hashed_pass','$gender','address')";
     $res=mysqli_query($conn, $sql);
     if(!$res){
       echo "inserted failed";
@@ -56,7 +57,10 @@ if(isset($_POST['register'])){
           <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
           <label for="confirm_password">Confirm Password</label>
         </div>
-
+        <div class="input-group">
+          <input type="text" name="address" id="address" placeholder="address" required>
+          <label for="address">address</label>
+        </div>
         <div class="gender-selection">
           <label>Gender</label>
           <div class="gender-options">
@@ -70,6 +74,7 @@ if(isset($_POST['register'])){
             <label for="others">Others</label>
           </div>
         </div>
+      
 
         <button type="submit" name="register" class="register-btn">Register</button>
       </form>

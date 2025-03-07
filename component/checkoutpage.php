@@ -8,6 +8,8 @@ if (mysqli_num_rows($res) > 0) {
     $name = $row['name'];
     $email = $row['email'];
     $phone = $row['phone'];
+    $address=$row['address'];
+    $payment_method=$row['payment_method'];
 }
 ?>
 <!DOCTYPE html>
@@ -25,18 +27,24 @@ if (mysqli_num_rows($res) > 0) {
         <!-- Checkout Form -->
         <div class="form-wrapper">
             <h2>Checkout Page</h2>
-            <form action="" method="post">
+            <form action="orderProcess.php" method="post">
                 <div class="input-group">
-                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name" required>
+                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name" >
                 </div>
                 <div class="input-group">
-                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email" required>
+                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email" >
                 </div>
                 <div class="input-group">
-                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone" required>
+                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone" >
                 </div>
+                <div class="input-group">
+                    <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address" >
+                </div>
+                <label>COD:
+                    <input type="radio" name="payment_method" value="COD">
+</label>
                 <div class="button-container">
-                    <button type="submit" name="register" class="register-btn confirm-btn">Confirm Order</button>
+                    <button type="submit" name="confirm" class="register-btn confirm-btn">Confirm Order</button>
                     <button type="reset" class="register-btn reset-btn">Reset</button>
                 </div>
             </form>

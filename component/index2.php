@@ -69,6 +69,9 @@ include './featured.php';
             </div>
         </div>
     </section>
+    <?php
+    include './logo.php';
+    ?>
 <?php
 include './footer.php';
 ?>

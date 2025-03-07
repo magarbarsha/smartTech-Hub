@@ -14,6 +14,7 @@ body {
 
 /* Top Navbar */
 .top-navbar {
+    
     background-color: #007bff;
     color: white;
     padding: 5px 20px;
@@ -34,6 +35,7 @@ body {
 
 /* Navbar */
 .navbar {
+   
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -195,6 +197,7 @@ body {
 
 /* Hero Content - Centered */
 .hero-content {
+   
 position: absolute;
 bottom: 30px;
 left: 50%;
@@ -234,6 +237,7 @@ background-color: #e68900;
 
 /* Menu */
 .menu {
+   
     background: #007bff;
     padding: 10px;
     text-align: center;
@@ -365,3 +369,81 @@ background-color: #e68900;
     background-color: #0056b3;
 }
 
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-links {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    color: black;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 25px;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    width: 50%;
+    max-width: 1000px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar:hover {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.search-bar select {
+    border: none;
+    outline: none;
+    padding: 8px;
+    background-color: transparent;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.search-bar button:hover {
+    color: #007BFF;
+}
+
+#voice-search-btn {
+    margin-left: 10px;
+}

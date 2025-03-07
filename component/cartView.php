@@ -11,11 +11,42 @@ include '../includes/config.php';
     <title>My Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/cartView.css">
+    <style>
+        .orders-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff8c00, #ff0080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    position: relative;
+}
+
+.orders-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 50px;
+    height: 4px;
+    background-color: #007bff;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+        </style>
 </head>
 
 <body>
+    <?php
+    include 'nav.php';
+    ?>
     <div class="container">
-        <h3>My Orders</h3>
+        <h3 class="orders-title">My Orders</h3>
         <table>
             <thead>
                 <tr>
@@ -104,7 +135,9 @@ include '../includes/config.php';
             <button class="proceed-btn"><a href="checkoutpage.php">Proceed to Checkout</a></button>
         </div>
     </div>
-
+<?php
+include 'footer.php';
+?>
     <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             const cartItems = document.getElementById("cart-items");

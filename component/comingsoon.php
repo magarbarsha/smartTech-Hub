@@ -315,11 +315,12 @@
         <!-- Subscription Form -->
         <div class="subscription-form">
             <h3>Get Notified When We Launch!</h3>
-            <form id="subscribe-form">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <button type="submit">Notify Me</button>
-            </form>
-            <p id="subscription-message"></p>
+            <form id="notifyForm" action="notify.php" method="POST">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Notify Me</button>
+    </form>
+    <p id="message"></p>
+           
         </div>
     </div>
 
@@ -349,17 +350,33 @@
         const countdownInterval = setInterval(countdown, 1000);
 
         // Subscription Form
-        document.getElementById("subscribe-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("subscription-message");
+        // document.getElementById("subscribe-form").addEventListener("submit", function (e) {
+        //     e.preventDefault();
+        //     const email = document.getElementById("email").value;
+        //     const message = document.getElementById("subscription-message");
 
-            if (email) {
-                message.innerText = "Thank you! We'll notify you when we launch.";
-                document.getElementById("email").value = ""; // Clear the input field
-            } else {
-                message.innerText = "Please enter a valid email address.";
-            }
+        //     if (email) {
+        //         message.innerText = "Thank you! We'll notify you when we launch.";
+        //         document.getElementById("email").value = ""; // Clear the input field
+        //     } else {
+        //         message.innerText = "Please enter a valid email address.";
+        //     }
+        // });
+        document.getElementById('notifyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('notify.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('message').textContent = data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         });
     </script>
 
