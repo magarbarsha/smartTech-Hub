@@ -23,7 +23,7 @@
             <a href="#"><i class="fa-solid fa-gauge"></i> Dashboard</a>
             <a href="categorydisplay.php"><i class="fa-solid fa-box"></i> Add category</a>
             <a href="productDisplay.php"><i class="fa-regular fa-user"></i> Product Management</a>
-            <a href="#"><i class="fa-solid fa-cart-arrow-down"></i> Order Management</a>
+            <a href="orders.php"><i class="fa-solid fa-cart-arrow-down"></i> Order Management</a>
             <a href="#"><i class="fa-solid fa-chart-line"></i> Sales</a>
             <a href="#"><i class="fa-regular fa-comments"></i> Feedback</a>
             <a href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

@@ -20,10 +20,37 @@ if (mysqli_num_rows($res) > 0) {
     <title>Checkout and Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="../assets/css/checkoutpage.css">
+   <style>
+    .error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #c62828;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #2e7d32;
+}
+</style>
 </head>
 <body>
   
     <div class="container">
+    <?php if (isset($_SESSION['error'])) {
+            echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['success'])) {
+            echo "<div class='success-message'>" . $_SESSION['success'] . "</div>";
+            unset($_SESSION['success']);
+        } ?>
         <!-- Checkout Form -->
         <div class="form-wrapper">
             <h2>Checkout Page</h2>
