@@ -8,42 +8,48 @@ if (mysqli_num_rows($res) > 0) {
     $name = $row['name'];
     $email = $row['email'];
     $phone = $row['phone'];
-    $address=$row['address'];
-    $payment_method=$row['payment_method'];
+    $address = $row['address'];
+    $payment_method = $row['payment_method'];
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout and Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../assets/css/checkoutpage.css">
-   <style>
-    .error-message {
-    background-color: #ffebee;
-    color: #c62828;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    border: 1px solid #c62828;
-}
+    <link rel="stylesheet" href="../assets/css/checkoutpage.css">
+    <style>
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #c62828;
+        }
 
-.success-message {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    border: 1px solid #2e7d32;
-}
-</style>
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #2e7d32;
+        }
+
+        li {
+            list-style-type: none;
+        }
+    </style>
 </head>
+
 <body>
-  
+
     <div class="container">
-    <?php if (isset($_SESSION['error'])) {
+        <?php if (isset($_SESSION['error'])) {
             echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
             unset($_SESSION['error']);
         }
@@ -56,20 +62,31 @@ if (mysqli_num_rows($res) > 0) {
             <h2>Checkout Page</h2>
             <form action="orderProcess.php" method="post">
                 <div class="input-group">
-                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name" >
+                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name">
                 </div>
                 <div class="input-group">
-                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email" >
+                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email">
                 </div>
                 <div class="input-group">
-                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone" >
+                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address" >
+                    <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address">
                 </div>
-                <label>COD:
+                <!-- <label>COD:
                     <input type="radio" name="payment_method" value="COD">
-</label>
+</label> -->
+                <label>Pay With:
+
+    <input type="submit" value="pay with khalti" name="pay with khalti">
+  </li>
+                        <li>
+                            <label>COD:
+                                <input type="radio" name="payment_method" value="COD">
+                            </label>
+                        </li>
+                    </ul>
+                </label>
                 <div class="button-container">
                     <button type="submit" name="confirm" class="register-btn confirm-btn">Confirm Order</button>
                     <button type="reset" class="register-btn reset-btn">Reset</button>

@@ -221,6 +221,7 @@
             <a href="https://www.instagram.com" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <div class="auth-links">
+            <a href="userOrder.php">My Orders</a> |
             <a href="signin.php">Sign In</a> |
             <a href="signup.php">Sign Up</a> |
             <a href="../logout.php">Logout</a>
@@ -248,7 +249,7 @@
 
             <div class="nav-icons">
                 <a href="../login.php" aria-label="User Account"><i class="fa-regular fa-user"></i></a>
-                <a href="#" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                <a href="wishListView.php" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
                 <a href="checkoutpage.php" aria-label="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
             </div>

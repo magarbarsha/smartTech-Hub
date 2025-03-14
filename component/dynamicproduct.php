@@ -49,9 +49,13 @@ include '../includes/config.php';
                     <form action="addToCart.php" method="post">
                             <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
                             <button class="cart-btn" name="addtocart">ADD TO CART</button>
-                            <button class="wishlist-btn">♡ Wishlist</button>
+                            <!-- <button class="wishlist-btn">♡ Wishlist</button> -->
                         </form>
-                       
+                        <form action="addToWishlist.php" method="post">
+                            <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
+                            <button class="wishlist-btn" name="addtowishlist">♡ Wishlist</button>
+                        <!-- <button class="wishlist-btn">♡ Wishlist</button> -->
+                       </form>
                     </div>
                 </div>
             <?php

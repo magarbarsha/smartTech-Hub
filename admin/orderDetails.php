@@ -46,6 +46,7 @@ $item_result = $item_stmt->get_result();
 <body>
 <?php include 'adminsidenav.php' ?>
 <div class="dashboard-content">
+    <button onclick="window.print();">Print</button>
     <h1>Order Details</h1>
     <table>
         <tr><th>Order Number</th><td><?php echo $order['order_number']; ?></td></tr>
