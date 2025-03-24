@@ -5,12 +5,12 @@ $selectQuery = "SELECT * FROM `user` WHERE id = $_SESSION[id]";
 $res = mysqli_query($conn, $selectQuery);
 if (mysqli_num_rows($res) > 0) {
     $row = mysqli_fetch_assoc($res);
-        $name = $row['name'];
-        $email = $row['email'];
-        $phone = $row['phone'];
-    
+    $name = $row['name'];
+    $email = $row['email'];
+    $phone = $row['phone'];
+    $address = $row['address'];
+    $payment_method = $row['payment_method'];
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,232 +20,105 @@ if (mysqli_num_rows($res) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout and Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/checkoutpage.css">
     <style>
-        /* Reset Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        .container {
-            width: 100%;
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-wrapper,
-        .order-wrapper {
-            width: 50%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-wrapper h2,
-        .order-wrapper h3 {
-            text-align: center;
-            color: #333;
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
             margin-bottom: 20px;
+            border: 1px solid #c62828;
         }
 
-        .input-group {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .input-group input {
-            width: 100%;
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
             padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
             border-radius: 4px;
-        }
-
-        .input-group label {
-            position: absolute;
-            top: 5px;
-            left: 15px;
-            font-size: 14px;
-            color: #888;
-        }
-
-        .gender-selection {
             margin-bottom: 20px;
+            border: 1px solid #2e7d32;
         }
 
-        .gender-options input {
-            margin-right: 10px;
+        li {
+            list-style-type: none;
         }
-
-        .register-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .register-btn:hover {
-            background-color: #218838;
-        }
-
-        /* Orders Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        thead {
-            background-color: #343a40;
-            color: white;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .quantity-btn {
-            background-color: #f8b400;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .quantity-btn:hover {
-            background-color: #e0a800;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: red;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .summary {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .total-amount {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .proceed-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-
-        .proceed-btn:hover {
-            background-color: #218838;
-        }
-
-        /* Container for buttons */
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .register-btn {
-            width: 48%;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .confirm-btn {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .confirm-btn:hover {
-            background-color: #218838;
-        }
-
-        .reset-btn {
-            background-color: #f44336;
-            color: white;
-        }
-
-        .reset-btn:hover {
-            background-color: #e53935;
-        }
-        
     </style>
 </head>
 
 <body>
+
     <div class="container">
+        <?php if (isset($_SESSION['error'])) {
+            echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['success'])) {
+            echo "<div class='success-message'>" . $_SESSION['success'] . "</div>";
+            unset($_SESSION['success']);
+        } ?>
         <!-- Checkout Form -->
         <div class="form-wrapper">
-            <h2>Checkout page</h2>
-            <form action="" method="post">
+            <h2>Checkout Page</h2>
+            <form action="orderProcess.php" method="post">
                 <div class="input-group">
-                    <input type="text" name="name" id="name" value="<?php echo $name ?>" placeholder="Your Name" required>
-                    <label for="name">Username</label>
+                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name">
                 </div>
                 <div class="input-group">
-                    <input type="email" name="email" id="email" value="<?php echo $email ?>" placeholder="Your Email" required>
-                    <label for="email">Email</label>
+                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email">
                 </div>
                 <div class="input-group">
-                    <input type="number" name="phone" id="phone" value="<?php echo $phone ?>" placeholder="Your Phone" required>
-                    <label for="phone">Phone</label>
+                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone">
                 </div>
+                <div class="input-group">
+                    <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address">
+                </div>
+                <div>
+                    <h3>pay with:Esewa</h3>
+                    <ul>
+                        <li>
+                        <form id="esewaForm" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()">   
+      
+        <input type="text" id="total_amount" name="total_amount" value="<?php echo $totalAmount; ?>" required><br>      
+        <input type="text" id="transaction_uuid" name="transaction_uuid" value="24155622588" required><br>       
+        <input type="text" id="product_code" name="product_code" value="EPAYTEST" required><br>        
+        <input type="text" id="amount" name="amount" value="<?php echo $amount;?>" required><br>       
+        <input type="text" id="tax_amount" name="tax_amount" value="0" required><br>      
+        <input type="text" id="product_service_charge" name="product_service_charge" value="0" required><br>        
+        <input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" required><br>       
+        <input type="text" id="success_url" name="success_url" value="https://developer.esewa.com.np/success" required><br>        
+        <input type="text" id="failure_url" name="failure_url" value="https://developer.esewa.com.np/failure" required><br>       
+        <input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required><br>        
+        <input type="text" id="signature" name="signature" hidden readonly required><br>      
+        <button type="submit">Submit Payment</button>
+    </form>
 
-            
+                        </li>
+                    </ul>
                 </div>
+                <!-- <label>COD:
+                    <input type="radio" name="payment_method" value="COD">
+</label> -->
+                <!-- <label>Pay With:
+
+    <input type="submit" value="pay with khalti" name="pay with khalti">
+  </li>
+                        <li>
+                            <label>COD:
+                                <input type="radio" name="payment_method" value="COD">
+                            </label>
+                        </li>
+                    </ul>
+                </label> -->
                 <div class="button-container">
-                    <!-- Confirm Order Button (Left) -->
-                    <button type="submit" name="register" class="register-btn confirm-btn">Confirm Order</button>
-
-                    <!-- Reset Button (Right) -->
+                    <button type="submit" name="confirm" class="register-btn confirm-btn">Confirm Order</button>
                     <button type="reset" class="register-btn reset-btn">Reset</button>
                 </div>
             </form>
         </div>
 
-        <!-- My Orders Table -->
         <div class="order-wrapper">
             <h3>My Orders</h3>
             <table>
@@ -350,6 +223,28 @@ if (mysqli_num_rows($res) > 0) {
 
             updateTotals();
         });
+       
+        function generateSignature() {
+            var secretKey = "8gBm/:&EnhH.1/q"; 
+
+            var signedFieldNames = "total_amount,transaction_uuid,product_code";
+            var data = {
+                total_amount: document.getElementById("total_amount").value.trim(),
+                transaction_uuid: document.getElementById("transaction_uuid").value.trim(),
+                product_code: document.getElementById("product_code").value.trim()
+            };
+
+           
+            var signedData = signedFieldNames.split(",")
+                .map(key => key + "=" + encodeURIComponent(data[key]))
+                .join(",");
+           
+            var hash = CryptoJS.HmacSHA256(signedData, secretKey);
+            var signature = CryptoJS.enc.Base64.stringify(hash);
+            document.getElementById("signature").value = signature;
+            console.log("Generated Signature:", signature);
+        }
+ 
     </script>
 </body>
 

@@ -20,6 +20,8 @@ if (mysqli_num_rows($res) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout and Orders</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
     <link rel="stylesheet" href="../assets/css/checkoutpage.css">
     <style>
         .error-message {
@@ -73,10 +75,19 @@ if (mysqli_num_rows($res) > 0) {
                 <div class="input-group">
                     <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address">
                 </div>
+                <div>
+                    <h3>pay with:Esewa</h3>
+                    <ul>
+                        <li>
+                       
+
+                        </li>
+                    </ul>
+                </div>
                 <!-- <label>COD:
                     <input type="radio" name="payment_method" value="COD">
 </label> -->
-                <label>Pay With:
+                <!-- <label>Pay With:
 
     <input type="submit" value="pay with khalti" name="pay with khalti">
   </li>
@@ -86,14 +97,28 @@ if (mysqli_num_rows($res) > 0) {
                             </label>
                         </li>
                     </ul>
-                </label>
+                </label> -->
                 <div class="button-container">
                     <button type="submit" name="confirm" class="register-btn confirm-btn">Confirm Order</button>
                     <button type="reset" class="register-btn reset-btn">Reset</button>
                 </div>
             </form>
         </div>
-
+        <form id="esewaForm" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()">   
+      
+      <input type="text" id="total_amount" name="total_amount" value="<?php  $totalAmount; ?>" required><br>      
+      <input type="text" id="transaction_uuid" name="transaction_uuid" value="<?php $uId ?>" required><br>       
+      <input type="text" id="product_code" name="product_code" value="EPAYTEST" required><br>        
+      <input type="text" id="amount" name="amount" value="<?php $amount;?>" required><br>       
+      <input type="text" id="tax_amount" name="tax_amount" value="0" required><br>      
+      <input type="text" id="product_service_charge" name="product_service_charge" value="0" required><br>        
+      <input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" required><br>       
+      <input type="text" id="success_url" name="success_url" value="https://developer.esewa.com.np/success" required><br>        
+      <input type="text" id="failure_url" name="failure_url" value="https://developer.esewa.com.np/failure" required><br>       
+      <input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required><br>        
+      <input type="text" id="signature" name="signature" hidden readonly required><br>      
+      <button type="submit">Submit Payment</button>
+  </form>
         <div class="order-wrapper">
             <h3>My Orders</h3>
             <table>
@@ -110,6 +135,7 @@ if (mysqli_num_rows($res) > 0) {
                 <tbody id="cart-items">
                     <?php
                     $user_id = $_SESSION['id'];
+                  
                     $counter = 0;
                     $totalAmount = 0;
                     $shippingCharge = 100;
@@ -117,11 +143,13 @@ if (mysqli_num_rows($res) > 0) {
                             INNER JOIN prod ON card_tbl.product_id=prod.id WHERE user_id=$user_id";
                     $res = mysqli_query($conn, $sql);
                     $num = mysqli_num_rows($res);
+                    $uId=0;
 
                     if ($num > 0) {
                         while ($row = mysqli_fetch_assoc($res)) {
                             $amount = $row['price'] * $row['quantity'];
                             $totalAmount += $amount;
+                            $uid=$row["card_id"];
                             ?>
                             <tr data-id="<?php echo $row['card_id']; ?>" data-price="<?php echo $row['price']; ?>">
                                 <td><?php echo ++$counter; ?></td>
@@ -198,6 +226,28 @@ if (mysqli_num_rows($res) > 0) {
 
             updateTotals();
         });
+       
+        function generateSignature() {
+            var secretKey = "8gBm/:&EnhH.1/q"; 
+
+            var signedFieldNames = "total_amount,transaction_uuid,product_code";
+            var data = {
+                total_amount: document.getElementById("total_amount").value.trim(),
+                transaction_uuid: document.getElementById("transaction_uuid").value.trim(),
+                product_code: document.getElementById("product_code").value.trim()
+            };
+
+           
+            var signedData = signedFieldNames.split(",")
+                .map(key => key + "=" + encodeURIComponent(data[key]))
+                .join(",");
+           
+            var hash = CryptoJS.HmacSHA256(signedData, secretKey);
+            var signature = CryptoJS.enc.Base64.stringify(hash);
+            document.getElementById("signature").value = signature;
+            console.log("Generated Signature:", signature);
+        }
+ 
     </script>
 </body>
 
