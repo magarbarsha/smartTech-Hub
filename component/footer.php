@@ -7,12 +7,13 @@
     <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
-       
-
         .footer {
-            background: linear-gradient(135deg, #007bff, #007bff);
-            padding: 30px 0;
-            color: white;
+            background: #007bff;
+            /* background: white; */
+            padding: 20px 0; /* Reduced from 30px */
+         position:relative;
+         top:170px;
+            color: black;
             font-size: 30px;
             margin-top: auto;
             text-align: center;
@@ -23,6 +24,7 @@
         }
 
         .container {
+           
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
@@ -32,7 +34,7 @@
 
         .footer-section {
             width: 20%;
-            padding: 10px;
+            padding: 8px; /* Reduced from 10px */
             box-sizing: border-box;
             transition: transform 0.3s ease;
         }
@@ -42,18 +44,18 @@
         }
 
         .footer-section h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 18px; /* Increased from 16px */
+            margin-bottom: 12px; /* Reduced from 15px */
             font-weight: bold;
             letter-spacing: 0.5px;
-            color: #ffffff;
+            color: #000000;
         }
 
         .footer-section p,
         .footer-section ul {
-            color: #cccccc;
-            margin: 5px 0;
-            font-size: 12px;
+            color: #333333;
+            margin: 4px 0; /* Reduced from 5px */
+            font-size: 14px; /* Increased from 12px */
         }
 
         .footer-section ul {
@@ -62,11 +64,11 @@
         }
 
         .footer-section ul li {
-            margin: 5px 0;
+            margin: 4px 0; /* Reduced from 5px */
         }
 
         .footer-section ul li a {
-            color: #cccccc;
+            color: #333333;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -76,9 +78,9 @@
         }
 
         .footer-section .social-icons a {
-            margin: 8px;
-            color: #ffffff;
-            font-size: 18px;
+            margin: 6px; /* Reduced from 8px */
+            color: #000000;
+            font-size: 20px; /* Increased from 18px */
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -90,12 +92,13 @@
         .footer-section input {
             width: 80%;
             padding: 8px;
-            margin-top: 10px;
+            margin-top: 8px; /* Reduced from 10px */
             border: 1px solid #cccccc;
             border-radius: 5px;
-            background-color: #444;
-            color: white;
+            background-color:rgb(245, 245, 245);
+            color: #333333;
             transition: background-color 0.3s;
+            font-size: 14px; /* Increased */
         }
 
         .footer-section input:focus {
@@ -109,9 +112,10 @@
             padding: 8px 12px;
             border: none;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 8px; /* Reduced from 10px */
             border-radius: 5px;
             transition: background-color 0.3s;
+            font-size: 14px; /* Increased */
         }
 
         .footer-section button:hover {
@@ -119,20 +123,20 @@
         }
 
         .footer-bottom {
-            font-size: 12px;
-            margin-top: 20px;
-            color: #bbbbbb;
+            font-size: 14px; /* Increased from 12px */
+            margin-top: 15px; /* Reduced from 20px */
+            color: #666666;
         }
 
         .payment-methods {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 10px; /* Reduced from 15px */
         }
 
         .payment-methods img {
-            width: 70px;
+            width: 60px; /* Reduced from 70px */
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 

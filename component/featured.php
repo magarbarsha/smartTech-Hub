@@ -20,6 +20,7 @@ body {
 
 .featured h2 {
     font-size: 24px;
+    top:170px;
     text-transform: uppercase;
     margin-bottom: 40px;
     color: #333;
@@ -31,6 +32,7 @@ body {
 .featured h2::after {
     content: '';
     position: absolute;
+    
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
@@ -57,6 +59,7 @@ body {
     width: 300px;
     text-align: center;
     position: relative;
+    top:200px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

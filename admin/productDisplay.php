@@ -18,7 +18,7 @@ include '../includes/config.php';
     <!-- Dashboard Content Section (Cards) -->
     <div class="dashboard-content">
         <!-- Add Product Button -->
-        <a href="productadd.php" class="add-product-btn">Add Product</a>
+        <a href="productAdd.php" class="add-product-btn">Add Product</a>
         
         <table>
             <tr>

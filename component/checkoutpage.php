@@ -77,12 +77,7 @@ if (mysqli_num_rows($res) > 0) {
                 </div>
                 <div>
                     <h3>pay with:Esewa</h3>
-                    <ul>
-                        <li>
-                       
-
-                        </li>
-                    </ul>
+                    
                 </div>
                 <!-- <label>COD:
                     <input type="radio" name="payment_method" value="COD">
@@ -104,21 +99,7 @@ if (mysqli_num_rows($res) > 0) {
                 </div>
             </form>
         </div>
-        <form id="esewaForm" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()">   
-      
-      <input type="text" id="total_amount" name="total_amount" value="<?php  $totalAmount; ?>" required><br>      
-      <input type="text" id="transaction_uuid" name="transaction_uuid" value="<?php $uId ?>" required><br>       
-      <input type="text" id="product_code" name="product_code" value="EPAYTEST" required><br>        
-      <input type="text" id="amount" name="amount" value="<?php $amount;?>" required><br>       
-      <input type="text" id="tax_amount" name="tax_amount" value="0" required><br>      
-      <input type="text" id="product_service_charge" name="product_service_charge" value="0" required><br>        
-      <input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" required><br>       
-      <input type="text" id="success_url" name="success_url" value="https://developer.esewa.com.np/success" required><br>        
-      <input type="text" id="failure_url" name="failure_url" value="https://developer.esewa.com.np/failure" required><br>       
-      <input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required><br>        
-      <input type="text" id="signature" name="signature" hidden readonly required><br>      
-      <button type="submit">Submit Payment</button>
-  </form>
+
         <div class="order-wrapper">
             <h3>My Orders</h3>
             <table>
@@ -133,46 +114,70 @@ if (mysqli_num_rows($res) > 0) {
                     </tr>
                 </thead>
                 <tbody id="cart-items">
-                    <?php
-                    $user_id = $_SESSION['id'];
-                  
-                    $counter = 0;
-                    $totalAmount = 0;
-                    $shippingCharge = 100;
-                    $sql = "SELECT *, card_tbl.id AS card_id, prod.id AS product_id FROM card_tbl 
-                            INNER JOIN prod ON card_tbl.product_id=prod.id WHERE user_id=$user_id";
-                    $res = mysqli_query($conn, $sql);
-                    $num = mysqli_num_rows($res);
-                    $uId=0;
+                <?php
+                $user_id = $_SESSION['id'];
+                $counter = 0;
+                $totalAmount = 0;
+                $shippingCharge = 100;
+                $sql = "SELECT *, card_tbl.id AS card_id, prod.id AS product_id FROM card_tbl 
+                        INNER JOIN prod ON card_tbl.product_id=prod.id WHERE user_id=$user_id";
+                $res = mysqli_query($conn, $sql);
+                $num = mysqli_num_rows($res);
 
-                    if ($num > 0) {
-                        while ($row = mysqli_fetch_assoc($res)) {
-                            $amount = $row['price'] * $row['quantity'];
-                            $totalAmount += $amount;
-                            $uid=$row["card_id"];
-                            ?>
-                            <tr data-id="<?php echo $row['card_id']; ?>" data-price="<?php echo $row['price']; ?>">
-                                <td><?php echo ++$counter; ?></td>
-                                <td>
-                                    <img src="../uploads/<?php echo $row['product_image']; ?>" alt="Product">
-                                    <p><?php echo $row['product_name']; ?></p>
-                                </td>
-                                <td>₹<?php echo number_format($row['price'], 2); ?></td>
-                                <td class="quantity-control">
-                                    <button class="quantity-btn decrease">-</button>
-                                    <input type="number" class="quantity-input" value="<?php echo $row['quantity']; ?>" min="1">
-                                    <button class="quantity-btn increase">+</button>
-                                </td>
-                                <td class="total-price">₹<?php echo number_format($amount, 2); ?></td>
-                                <td><button class="remove-btn">❌</button></td>
-                            </tr>
+                if ($num > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        $amount = $row['price'] * $row['product_quantity'];
+
+                        $totalAmount += $amount;
+                        ?>
+                        <tr data-id="<?php echo $row['card_id']; ?>" data-price="<?php echo $row['price']; ?>">
+                            <td><?php echo ++$counter; ?></td>
+                            <td>
+                                <img src="../uploads/<?php echo $row['product_image']; ?>" alt="Product">
+                                <p><?php echo $row['product_name']; ?></p>
+                            </td>
+                            <td>₹<?php echo number_format($row['price'], 2); ?></td>
+                            <td class="quantity-control">
+                                <!-- <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="<?php echo $row['quantity']; ?>" min="1">
+                                <button class="quantity-btn increase">+</button> -->
+                                <form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
+                                    <input type="number" name="product_quantity" min=1
+                                        value="<?php echo $row['product_quantity'] ?>">
+                                    <input type="submit" name="updateCart" value="update">
+                                </form>
+                            </td>
+
+                            <!-- <td class="total-price">₹<?php echo number_format($amount, 2); ?></td>
+                            <td><button class="remove-btn">❌</button></td>
+                        </tr> -->
+                            <td class="total-price">
+                                <?php
+
+                                echo "₹" . number_format($amount, 2);
+                                ?>
+                            </td>
+                            <td>
+                            <form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
+                                    <input type="submit" name="remove" value="remove">
+                                </form>
+                            </td>
+<td>
+<form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+                                    <input type="submit" name="removeall" value="removeall">
+                                </form>
+                            </td>
+</td>
                             <?php
-                        }
-                    } else {
-                        echo "<tr><td colspan='6'>No orders found.</td></tr>";
                     }
-                    ?>
-                </tbody>
+                } else {
+                    echo "<tr><td colspan='6'>No orders found.</td></tr>";
+                }
+                ?>
+            </tbody>
             </table>
             <div class="summary">
                 <div>Cart Total: ₹<span id="cart-total"><?php echo number_format($totalAmount, 2); ?></span></div>

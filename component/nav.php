@@ -8,210 +8,62 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* General Styles */
+        body{
+            padding-top: 0; /* Adjust this based on navbar heights */
+        }
 
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 25px;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            width: 50%;
+            max-width: 1000px;
+            transition: box-shadow 0.3s ease;
+        }
 
+        .search-bar:hover {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
 
+        .search-bar select {
+            border: none;
+            outline: none;
+            padding: 8px;
+            background-color: transparent;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
 
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 8px;
+            width: 100%;
+            font-size: 14px;
+            background-color: transparent;
+        }
 
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
 
-.search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #f8f9fa;
-    border-radius: 25px;
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    width: 50%;
-    max-width: 1000px;
-    transition: box-shadow 0.3s ease;
-}
+        .search-bar button:hover {
+            color: #007BFF;
+        }
 
-.search-bar:hover {
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-}
-
-.search-bar select {
-    border: none;
-    outline: none;
-    padding: 8px;
-    background-color: transparent;
-    font-size: 14px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    padding: 8px;
-    width: 100%;
-    font-size: 14px;
-    background-color: transparent;
-}
-
-.search-bar button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.search-bar button:hover {
-    color: #007BFF;
-}
-
-#voice-search-btn {
-    margin-left: 10px;
-}
-
-/* .nav-icons {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-icons a {
-    color: #333;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-.nav-icons a:hover {
-    color: #007BFF;
-}
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    color: #333;
-}
-
-/* Menu */
-/* .menu {
-    background-color: #333;
-    padding: 10px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-} */
-
-/* .menu ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.menu ul li {
-    margin: 0 15px;
-    position: relative;
-}
-
-.menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-} */ */
-
-/* .menu ul li a:hover {
-    color: #007BFF;
-} */
-
-/* Dropdown Menu */
-.dropdown-toggle::after {
-    content: '▼';
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    z-index: 1000;
-    min-width: 150px;
-}
-
-.dropdown-content a {
-    color: #333;
-    padding: 10px 15px;
-    display: block;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: #f8f9fa;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-.menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
-}
-
-.menu ul li a:hover {
-    color: #007BFF;
-}
-
-.menu ul li a i {
-    font-size: 18px; /* Adjust icon size */
-}
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
-    .search-bar {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .menu ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .menu ul li {
-        margin: 10px 0;
-    }
-
-    .nav-icons {
-        gap: 15px;
-    }
-} */
-
-    
-
-
-
-        </style>
+        #voice-search-btn {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="top-navbar">
@@ -236,11 +88,12 @@
             </div>
 
             <div class="search-bar" role="search">
-                <select class="category" aria-label="Product Categories">
-                    <option>All Categories</option>
-                    <option><a href="laptops.php">Laptops</a></option>
-                    <option>Accessories</option>
-                    <option>Smartphones</option>
+                <select id="category-select" aria-label="Product Categories">
+                    <option value="All Categories">All Categories</option>
+                    <option value="Laptops">Laptops</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Smartphones">Smartphones</option>
+                    <option value="Dell">Dell</option> <!-- Added Dell option for filtering -->
                 </select>
                 <input type="text" id="search-input" placeholder="Search for products, categories..." aria-label="Search">
                 <button id="voice-search-btn" aria-label="Voice Search"><i class="fas fa-microphone"></i></button>
@@ -256,78 +109,89 @@
         </nav>
 
         <div class="menu">
-    <ul>
-        <li>
-            <a href="index2.php">
-                <i class="fas fa-home"></i> HOME
-            </a>
-        </li>
-        <li class="dropdown">
-            <a href="dynamicproduct.php" class="dropdown-toggle">
-                <i class="fas fa-box-open"></i> PRODUCTS
-            </a>
-        </li>
-        <li>
-            <a href="laptops.php">
-                <i class="fas fa-laptop"></i> GAMING LAPTOPS
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-star"></i> NEW ARRIVALS
-            </a>
-        </li>
-        <li>
-            <a href="comingsoon.php">
-                <i class="fas fa-clock"></i> COMING SOON
-            </a>
-        </li>
-        <li>
-            <a href="aboutus.php">
-                <i class="fas fa-info-circle"></i> ABOUT US
-            </a>
-        </li>
-        <li>
-            <a href="contact.php">
-                <i class="fas fa-envelope"></i> CONTACT US
-            </a>
-        </li>
-    </ul>
-</div>
+            <ul>
+                <li>
+                    <a href="index2.php">
+                        <i class="fas fa-home"></i> HOME
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="dynamicproduct.php" class="dropdown-toggle">
+                        <i class="fas fa-box-open"></i> PRODUCTS
+                    </a>
+                </li>
+                <li>
+                    <a href="laptops.php">
+                        <i class="fas fa-laptop"></i> GAMING LAPTOPS
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-star"></i> NEW ARRIVALS
+                    </a>
+                </li>
+                <li>
+                    <a href="comingsoon.php">
+                        <i class="fas fa-clock"></i> COMING SOON
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.php">
+                        <i class="fas fa-info-circle"></i> ABOUT US
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.php">
+                        <i class="fas fa-envelope"></i> CONTACT US
+                    </a>
+                </li>
+            </ul>
+        </div>
     </header>
 
-    <!-- JavaScript for Voice Search -->
     <script>
-        // Voice Search Functionality
-        const voiceSearchBtn = document.getElementById('voice-search-btn');
-        const searchInput = document.getElementById('search-input');
+    // Function to handle the search action
+    function handleSearch() {
+        let searchQuery = document.getElementById('search-input').value;
+        let category = document.getElementById('category-select').value;
+        // Redirect to the dynamic product page with the selected category and search query as query parameters
+        window.location.href = `dynamicproduct.php?search=${searchQuery}&category=${category}`;
+    }
 
-        // Check if the browser supports speech recognition
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            const recognition = new SpeechRecognition();
-            recognition.continuous = false; // Stop after one command
-            recognition.interimResults = false; // Only final results
+    // Search button click event
+    document.querySelector('.search-btn').addEventListener('click', function () {
+        handleSearch();
+    });
 
-            voiceSearchBtn.addEventListener('click', () => {
-                recognition.start();
-                voiceSearchBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>'; // Change icon while listening
-            });
-
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                searchInput.value = transcript; // Set the recognized text to the search input
-                voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>'; // Change icon back
-            };
-
-            recognition.onerror = (event) => {
-                console.error('Error occurred in recognition: ', event.error);
-                voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>'; // Change icon back
-            };
-        } else {
-            console.log('Speech recognition not supported in this browser.');
-            voiceSearchBtn.style.display = 'none'; // Hide the button if not supported
+    // Trigger search on "Enter" key press
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            handleSearch();
         }
-    </script>
+    });
+
+    // Voice Search Functionality (Optional)
+    const voiceSearchBtn = document.getElementById('voice-search-btn');
+    const searchInput = document.getElementById('search-input');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        voiceSearchBtn.addEventListener('click', () => {
+            recognition.start();
+            voiceSearchBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+        });
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            searchInput.value = transcript;
+            voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+        };
+    } else {
+        console.log('Speech recognition not supported in this browser.');
+        voiceSearchBtn.style.display = 'none';
+    }
+</script>
+
 </body>
 </html>

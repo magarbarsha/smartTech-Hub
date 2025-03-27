@@ -23,20 +23,26 @@ include '../includes/config.php';
     padding: 10px;
     border-bottom: 3px solid #007bff;
     display: inline-block;
-    position: relative;
-}
+    /* position: relative;
+    top:20px;
+} */
+        }
 
 .orders-title::after {
     content: "";
-    position: absolute;
+    position: relative;
+    top:100px;
     left: 50%;
     bottom: -6px;
     width: 50px;
     height: 4px;
     background-color: #007bff;
     transform: translateX(-50%);
+   
     border-radius: 2px;
 }
+
+
 
         </style>
 </head>

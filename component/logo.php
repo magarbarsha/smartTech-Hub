@@ -15,6 +15,8 @@
 
 /* Section Styling */
 .logo-section {
+    position:relative;
+    top:170px;
     padding: 20px;
     background: #fff;
     margin: 20px;
@@ -52,18 +54,34 @@
 
     <section class="logo-section">
        
-        <div class="logo-container">
-            <img src="./images/logo4.png" alt="Dell">
-            <img src="images/logo1.png" alt="Asus">
-            <!-- <img src="images/logo2.png" alt="HP"> -->
-            <img src="images/logo3.png" alt="Apple">
-            <img src="images/logo5.svg" alt="Lenovo">
-            <img src="images/logo6.svg" alt="Lenovo">
-            <img src="images/logo7.svg" alt="Lenovo">
-            <img src="images/logo8.svg" alt="Lenovo">
-            
-            <img src="images/logo10.svg" alt="Lenovo">
-        </div>
+    <div class="logo-container">
+    <a href="dell.php" target="_blank">
+        <img src="images/logo5.svg" alt="Dell">
+    </a>
+    <a href="asus.php" target="_blank">
+        <img src="images/logo1.png" alt="Asus">
+    </a>
+    <!-- <a href="https://www.hp.com" target="_blank">
+        <img src="images/logo2.png" alt="HP">
+    </a> -->
+    <a href="apple.php" target="_blank">
+        <img src="images/logo10.svg" alt="Apple">
+    </a>
+    <!-- <a href="lenova.php" target="_blank">
+        <img src="images/logo5.svg" alt="Lenovo">
+    </a> -->
+    <a href="hp.php" target="_blank">
+        <img src="images/logo6.svg" alt="Lenovo">
+    </a>
+    <a href="aser.php" target="_blank">
+        <img src="images/logo7.svg" alt="Lenovo">
+    </a>
+    <a href="lenovo.php" target="_blank">
+        <img src="images/logo8.svg" alt="Lenovo">
+    </a>
+    
+</div>
+
     </section>
 <script>
     $(document).ready(function(){
