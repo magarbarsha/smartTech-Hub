@@ -1,223 +1,117 @@
 <?php
+session_start();
+require '../includes/config.php';
 
-// Author: Samir Khanal
-$error_message = "";
-$khalti_public_key = "test_public_key_dc74e0fd57cb46cd93832aee0a390234"; // Replace this with your actual Khalti public key
+// Enable debugging (remove in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Run your code here to get your amount and product id and product URL. Change this dynamically.
-// ------------------------------------------------------------------------
-// CHANGE THE CODE BELOW, e.g. you can get product price and ID from here and set these variables.
-// Do not change variable names unless you change everything below
-// ------------------------------------------------------------------------
-
-$amount = 10; // Product price in rupees
-$uniqueProductId = "nike-shoes"; // Product unique ID
-$uniqueUrl = "http://localhost/product/nike-shoes/"; // Product URL
-$uniqueProductName = "Nike shoes"; // Product name
-$successRedirect = "http://localhost/SmartTech%20Hub/component/index2.php"; // Redirect URL after successful payment
-
-// ------------------------------------------------------------------------
-// HINT: Just change price above and redirect user to this page. It will handle everything automatically.
-// ------------------------------------------------------------------------
-
-function checkValid($data)
-{
-    $expectedAmount = 10 * 100; // Convert to paisa (Khalti returns amount in paisa, so 10 rupees = 1000 paisa)
-
-    if ((float) $data["amount"] == $expectedAmount) {
-        return 1; // Success
-    } else {
-        return 0; // Error
-    }
+// 1. Validate session and payment method
+if (empty($_SESSION['checkout_form_data']) || 
+    empty($_SESSION['order_id']) ||
+    ($_SESSION['checkout_form_data']['payment_method'] ?? '') !== 'khalti') {
+    
+    error_log("Invalid session data in pay.php");
+    $_SESSION['payment_error'] = "Invalid payment request. Please try again.";
+    header("Location: ../checkoutpage.php");
+    exit();
 }
 
-// ------------------------------------------------------------------------
-// DO NOT CHANGE THE CODE BELOW UNLESS YOU KNOW WHAT YOU ARE DOING
-// ------------------------------------------------------------------------
+// 2. Get complete order details with address
+$order_id = $_SESSION['order_id'];
+$stmt = $conn->prepare("
+    SELECT o.order_number, o.total_amount, o.address, o.name, o.email, o.phone,
+           GROUP_CONCAT(oi.name SEPARATOR ', ') as items
+    FROM orders o
+    JOIN order_items oi ON o.id = oi.order_id
+    WHERE o.id = ?
+    GROUP BY o.id
+");
+$stmt->bind_param("i", $order_id);
+$stmt->execute();
+$order = $stmt->get_result()->fetch_assoc();
 
-$token = "";
-$price = $amount * 100; // Convert to paisa (100 paisa = 1 rupee)
-$mpin = "";
-
-// Send OTP
-if (isset($_POST["mobile"]) && isset($_POST["mpin"])) {
-    try {
-        $mobile = $_POST["mobile"];
-        $mpin = $_POST["mpin"];
-
-        if (strlen($mobile) !== 10 || !is_numeric($mobile)) {
-            $error_message = "Invalid mobile number.";
-        } elseif (strlen($mpin) < 4 || strlen($mpin) > 6) {
-            $error_message = "Invalid MPIN length.";
-        } else {
-            $curl = curl_init();
-
-            curl_setopt_array(
-                $curl,
-                array(
-                    CURLOPT_URL => 'https://khalti.com/api/v2/payment/initiate/',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => json_encode([
-                        "public_key" => $khalti_public_key,
-                        "mobile" => $mobile,
-                        "transaction_pin" => $mpin,
-                        "amount" => $price,
-                        "product_identity" => $uniqueProductId,
-                        "product_name" => $uniqueProductName,
-                        "product_url" => $uniqueUrl
-                    ]),
-                    CURLOPT_HTTPHEADER => array(
-                        'Content-Type: application/json',
-                        'Accept: application/json'
-                    ),
-                )
-            );
-
-            $response = curl_exec($curl);
-            curl_close($curl);
-
-            $parsed = json_decode($response, true);
-
-            if (key_exists("token", $parsed)) {
-                $token = $parsed["token"];
-            } else {
-                $error_message = "Incorrect mobile number or MPIN.";
-            }
-        }
-    } catch (Exception $e) {
-        $error_message = "Incorrect mobile number or MPIN.";
-    }
+if (!$order) {
+    error_log("Order not found: $order_id");
+    $_SESSION['payment_error'] = "Order not found. Please contact support.";
+    header("Location: checkout.php");
+    exit();
 }
 
-// OTP verification
-if (isset($_POST["otp"]) && isset($_POST["token"]) && isset($_POST["mpin"])) {
-    try {
-        $otp = $_POST["otp"];
-        $token = $_POST["token"];
-        $mpin = $_POST["mpin"];
+// 3. Prepare validated Khalti payload with address
+$checkout_data = $_SESSION['checkout_form_data'];
+$total_amount = (float)$order['total_amount'];
 
-        $curl = curl_init();
+$payload = [
+    "return_url" => "http://localhost/SmartTech%20Hub/component/order_success.php",
+    "website_url" => "https://dev.khalti.com/api/v2/",
+    "amount" => (int)round($total_amount * 100), // Convert to paisa
+    "purchase_order_id" => $order['order_number'],
+    "purchase_order_name" => "Order #" . $order['order_number'] . " - " . substr($order['items'], 0, 50) . (strlen($order['items']) > 50 ? '...' : ''),
+    "customer_info" => [
+        "name" => filter_var($order['name'], FILTER_SANITIZE_STRING),
+        "email" => filter_var($order['email'], FILTER_SANITIZE_EMAIL),
+        "phone" => preg_replace('/[^0-9]/', '', $order['phone']),
+        "address" => [
+            "street" => substr(filter_var($order['address'], FILTER_SANITIZE_STRING), 0, 100),
+            "city" => "Kathmandu", // Default or get from DB
+            "state" => "Bagmati", // Default or get from DB
+            "postal_code" => "44600" // Default or get from DB
+        ]
+    ]
+];
 
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_URL => 'https://khalti.com/api/v2/payment/confirm/',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => json_encode([
-                    "public_key" => $khalti_public_key,
-                    "transaction_pin" => $mpin,
-                    "confirmation_code" => $otp,
-                    "token" => $token
-                ]),
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
-                    'Accept: application/json'
-                ),
-            )
-        );
+// 4. Initiate Khalti payment
+$headers = [
+    'Authorization: Key 3da50215902547fa9b0b928e7fe7ab7b', // Test secret key
+    'Content-Type: application/json',
+    'Accept: application/json'
+];
 
-        $response = curl_exec($curl);
-        curl_close($curl);
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => 'https://a.khalti.com/api/v2/epayment/initiate/',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => json_encode($payload),
+    CURLOPT_HTTPHEADER => $headers,
+    CURLOPT_TIMEOUT => 20,
+    CURLOPT_SSL_VERIFYPEER => true
+]);
 
-        $parsed = json_decode($response, true);
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+curl_close($ch);
 
-        if (key_exists("token", $parsed)) {
-            $isvalid = checkValid($parsed);
-            if ($isvalid) {
-                $error_message = "<span style='color:green'>Payment success</span> <script> window.location='" . $successRedirect . "'; </script>";
-            }
-        } else {
-            $error_message = "Could not process the transaction at the moment.";
-            if (key_exists("detail", $parsed)) {
-                $error_message = $parsed["detail"];
-            }
-        }
-    } catch (Exception $e) {
-        $error_message = "Could not process the transaction at the moment.";
-    }
+// 5. Handle Khalti response
+if ($error || $http_code !== 200) {
+    error_log("Khalti API Error: " . $error . " | HTTP Code: " . $http_code);
+    $_SESSION['payment_error'] = "Payment gateway connection failed (Error: $http_code)";
+    header("Location: checkoutpage.php");
+    exit();
 }
+
+$result = json_decode($response, true);
+
+if (empty($result['payment_url'])) {
+    $error_detail = $result['detail'] ?? json_encode($result);
+    error_log("Khalti Payment Error: " . $error_detail);
+    $_SESSION['payment_error'] = "Payment initiation failed: " . 
+        (isset($result['detail']) ? $result['detail'] : "Please try again later");
+    header("Location: checkoutpage.php");
+    exit();
+}
+
+// 6. Store verification data
+$_SESSION['khalti_verify'] = [
+    'pidx' => $result['pidx'],
+    'order_id' => $order_id,
+    'amount' => $total_amount,
+    'timestamp' => time()
+];
+
+// 7. Ensure clean redirect
+header("Location: " . $result['payment_url']);
+exit();
 ?>
-
-<div class="khalticontainer">
-    <center>
-        <div><img src="./images/khalti.png" alt="khalti" width="200"></div>
-    </center>
-    <?php
-    if ($token == "") {
-        ?>
-    <form action="pay.php" method="post">
-        <small>Mobile Number:</small> <br>
-        <input type="number" class="number" minlength="10" maxlength="10" name="mobile" placeholder="98xxxxxxxx">
-        <small>Khalti MPIN:</small> <br>
-        <input type="password" class="mpin" name="mpin" minlength="4" maxlength="6" placeholder="xxxx">
-        <small>Price:</small> <br>
-        <input type="text" class="price" value="Rs. <?php echo $amount; ?>" disabled>
-        <input type="hidden" class="price" name="amount" value="<?php echo $amount; ?>">
-        <br>
-        <span style="display:block;color:red;">
-            <?php echo $error_message; ?>
-        </span>
-        <button>Pay Rs. <?php echo $amount; ?></button>
-        <br>
-        <small>We don't store your credentials for security reasons. You will have to reenter your details every time.</small>
-    </form>
-    <?php } ?>
-    <?php
-    if ($token != "") {
-        ?>
-    <form action="pay.php" method="post">
-        <input type="hidden" name="token" value="<?php echo $token; ?>">
-        <input type="hidden" name="mpin" value="<?php echo $mpin; ?>">
-        <small>OTP:</small> <br>
-        <input type="number" value="" name="otp" placeholder="xxxx">
-        <span style="display:block;color:red;">
-            <?php echo $error_message; ?>
-        </span>
-        <button>Pay Rs. <?php echo $amount; ?></button>
-    </form>
-    <?php
-    } ?>
-</div>
-
-<style>
-.khalticontainer {
-    width: 300px;
-    border: 2px solid #5C2D91;
-    margin: 0 auto;
-    padding: 8px;
-}
-
-input {
-    display: block;
-    width: 98%;
-    padding: 8px;
-    margin: 2px;
-}
-
-button {
-    display: block;
-    background-color: #5C2D91;
-    border: none;
-    color: white;
-    cursor: pointer;
-    width: 98%;
-    padding: 8px;
-    margin: 2px;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-</style>

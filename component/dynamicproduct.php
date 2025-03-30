@@ -12,7 +12,7 @@ include '../includes/config.php';
     <style>
         .search-container {
             position: relative;
-            top:0;
+            top: 20px;
             text-align: center;
             margin-bottom: 20px;
         }

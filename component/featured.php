@@ -20,7 +20,7 @@ body {
 
 .featured h2 {
     font-size: 24px;
-    top:170px;
+    top:90px;
     text-transform: uppercase;
     margin-bottom: 40px;
     color: #333;
@@ -59,7 +59,7 @@ body {
     width: 300px;
     text-align: center;
     position: relative;
-    top:200px;
+    top:100px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
