@@ -1,416 +1,181 @@
-
 <?php
 session_start();
-require '../includes/config.php';
-
-// Redirect if cart is empty
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    header("Location: cartView.php");
-    exit();
+include '../includes/config.php';
+$selectQuery = "SELECT * FROM user WHERE id = $_SESSION[id]";
+$res = mysqli_query($conn, $selectQuery);
+if (mysqli_num_rows($res) > 0) {
+    $row = mysqli_fetch_assoc($res);
+    $name = $row['name'];
+    $email = $row['email'];
+    $phone = $row['phone'];
+    $address = $row['address'];
+    $payment_method = $row['payment_method'];
 }
 
-// Get cart items with details
-$cart_items = [];
-$subtotal = 0;
-
-foreach ($_SESSION['cart'] as $product_id => $quantity) {
-    $stmt = $conn->prepare("SELECT id, product_name, price, image_path FROM products WHERE id = ?");
-    $stmt->bind_param("i", $product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows === 1) {
-        $product = $result->fetch_assoc();
-        $item_total = $product['price'] * $quantity;
-        $subtotal += $item_total;
-        
-        $cart_items[] = [
-            'id' => $product['id'],
-            'name' => $product['product_name'],
-            'price' => $product['price'],
-            'quantity' => $quantity,
-            'total' => $item_total,
-            'image_path' => $product['image_path']
-        ];
-    }
+// Calculate cart total
+$user_id = $_SESSION['id'];
+$totalAmount = 0;
+$shippingCharge = 100;
+$sql = "SELECT *, card_tbl.id AS card_id, prod.id AS product_id FROM card_tbl 
+        INNER JOIN prod ON card_tbl.product_id=prod.id WHERE user_id=$user_id";
+$res = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($res)) {
+    $totalAmount += $row['price'] * $row['product_quantity'];
 }
-
-// Calculate shipping and total
-$shipping_fee = ($subtotal > 1000) ? 0 : 50;
-$total = $subtotal + $shipping_fee;
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate form data
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $phone = trim($_POST['phone']);
-    $address = trim($_POST['address']);
-    $payment_method = $_POST['payment_method'];
-    
-    $errors = [];
-    if (empty($name)) $errors[] = "Name is required";
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Valid email is required";
-    if (empty($phone) || !preg_match('/^[0-9]{10}$/', $phone)) $errors[] = "Valid 10-digit phone number is required";
-    if (empty($address)) $errors[] = "Address is required";
-    if (!in_array($payment_method, ['cod', 'khalti', 'esewa', 'card'])) {
-        $errors[] = "Invalid payment method";
-    }
-    
-    if (empty($errors)) {
-        // Save order to database
-        $order_number = 'ORD-' . date('Ymd') . '-' . strtoupper(uniqid());
-        $status = 'pending';
-        $payment_details = '';
-        
-        $stmt = $conn->prepare("INSERT INTO orders1 (order_number,user_id delivery_name, delivery_email, delivery_phone,delivery_address, total_amount,total_items, shipping_date, delivered_date, payment_method, order_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssdssss", $order_number,$user_id, $delivery_name, $delivery_email,$total_items, $delivery_phone,$delivery_address, $total_amount, $shipping_date, $delivered_date, $payment_method, $order_status);
-        
-        if ($stmt->execute()) {
-            $order_id = $stmt->insert_id;
-            
-            // Save order items
-            foreach ($cart_items as $item) {
-                $stmt = $conn->prepare("INSERT INTO order_items1 (order_id, product_id, ordered_quantity,product_rate) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("iisdid", $order_id, $item['product_id'], $item['ordered_quantity'], $item['product-rate']);
-                $stmt->execute();
-            }
-            
-            // Store order and checkout data in session
-            $_SESSION['order_id'] = $order_id;
-            $_SESSION['checkout_form_data'] = [
-                'name' => $name,
-                'email' => $email,
-                'phone' => $phone,
-                'address' => $address,
-                'total' => $total,
-                'payment_method' => $payment_method
-            ];
-            
-            // Clear the cart
-            unset($_SESSION['cart']);
-            
-            // Redirect based on payment method
-            if ($payment_method === 'khalti') {
-                header("Location: pay.php?method=" . $payment_method);
-                exit();
-            } else {
-                header("Location: order_success.php?method=" . $payment_method);
-                exit();
-            }
-        } else {
-            $errors[] = "Failed to create order. Please try again.";
-        }
-    }
-}
+$finalTotal = $totalAmount + $shippingCharge;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | PharmaCare</title>
-    <link rel="stylesheet" href="../assets/css/pharmacy.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Checkout and Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/checkoutpage.css">
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --accent-color: #e74c3c;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --success-color: #27ae60;
-            --border-color: #e0e0e0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fa;
-            line-height: 1.6;
-        }
-        
-        .checkout-container {
-            max-width: 1200px;
-            margin: 280px auto 50px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 30px;
-        }
-        
-        .checkout-form {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
             margin-bottom: 20px;
-            color: var(--dark-color);
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid #c62828;
         }
-        
-        .form-group {
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 4px;
             margin-bottom: 20px;
+            border: 1px solid #2e7d32;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input, 
-        .form-group textarea, 
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 15px;
-        }
-        
-        .form-group input:focus, 
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-        
-        .grid-2-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .payment-method {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .payment-method:hover {
-            border-color: var(--primary-color);
-        }
-        
-        .payment-method.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(52, 152, 219, 0.05);
-        }
-        
-        .payment-method input {
-            margin-right: 15px;
-        }
-        
-        .payment-method i {
-            margin-right: 10px;
-            font-size: 20px;
-            color: var(--primary-color);
-        }
-        
-        .order-summary {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 100px;
-        }
-        
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .order-total {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .order-total.grand-total {
-            font-weight: 600;
-            font-size: 18px;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .btn-place-order {
-            width: 100%;
-            padding: 15px;
-            background: var(--success-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn-place-order:hover {
-            background: #219653;
-            transform: translateY(-2px);
-        }
-        
-        .btn-place-order i {
-            margin-right: 10px;
-        }
-        
-        .alert.error {
-            background-color: #fdecea;
-            color: #d32f2f;
-            padding: 12px 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .checkout-container {
-                grid-template-columns: 1fr;
-                margin-top: 80px;
-            }
-            
-            .order-summary {
-                position: static;
-            }
-            
-            .grid-2-col {
-                grid-template-columns: 1fr;
-            }
-        }
+        li { list-style-type: none; }
     </style>
 </head>
+
 <body>
-    <?php include 'Navbar.php'; ?>
-    
-    <div class="checkout-container">
-        <form method="post" class="checkout-form">
-            <h1>Checkout</h1>
-            
-            <?php if (!empty($errors)): ?>
-                <div class="alert error">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo $error; ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-            
-            <h2 class="section-title">Shipping Information</h2>
-            
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
-            </div>
-            
-            <div class="grid-2-col">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone (10 digits)</label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="address">Address</label>
-                <textarea id="address" name="address" rows="4" required><?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?></textarea>
-            </div>
-            
-            <div class="payment-methods">
-                <h2 class="section-title">Payment Method</h2>
-                
-                <label class="payment-method">
-                    <input type="radio" name="payment_method" value="cod" checked>
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>Cash on Delivery</span>
-                </label>
-                
-                <label class="payment-method">
-                    <input type="radio" name="payment_method" value="khalti">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Khalti</span>
-                </label>
-                
-                
-            </div>
-            
-            <button type="submit" class="btn-place-order">
-                <i class="fas fa-shopping-bag"></i> Place Order
-            </button>
-        </form>
+    <div class="container">
+        <?php 
+        if (isset($_SESSION['error'])) {
+            echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
+            unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['success'])) {
+            echo "<div class='success-message'>" . $_SESSION['success'] . "</div>";
+            unset($_SESSION['success']);
+        } 
+        ?>
         
-        <div class="order-summary">
-            <h2>Order Summary</h2>
-            <div class="order-items">
-                <?php foreach ($cart_items as $item): ?>
-                    <div class="order-item">
-                        <span><?php echo htmlspecialchars($item['name']); ?> × <?php echo $item['quantity']; ?></span>
-                        <span>₹<?php echo number_format($item['total_amount'], 2); ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="order-totals">
-               
-                <div class="order-total">
-                    <span>Shipping</span>
-                    <span><?php echo $shipping_fee > 0 ? '₹' . number_format($shipping_fee, 2) : 'FREE'; ?></span>
+        <!-- Checkout Form -->
+        <div class="form-wrapper">
+            <h2>Checkout Page</h2>
+            <form action="pay.php" method="post" id="paymentForm">
+                <div class="input-group">
+                    <input type="text" name="name" value="<?php echo $name ?>" placeholder="Your Name" required>
                 </div>
-                <div class="order-total grand-total">
-                    <span>Total</span>
-                    <span>₹<?php echo number_format($total, 2); ?></span>
+                <div class="input-group">
+                    <input type="email" name="email" value="<?php echo $email ?>" placeholder="Your Email" required>
                 </div>
+                <div class="input-group">
+                    <input type="number" name="phone" value="<?php echo $phone ?>" placeholder="Your Phone" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="address" value="<?php echo $address ?>" placeholder="Your address" required>
+                </div>
+                
+                <input type="hidden" name="amount" value="<?php echo $finalTotal ?>">
+                <input type="hidden" name="purchase_order_id" value="<?php echo uniqid() ?>">
+                <input type="hidden" name="purchase_order_name" value="Order from <?php echo $name ?>">
+                
+                <div>
+                    <h3>Pay with</h3>
+                    <ul>
+                        <li>
+                            <button type="submit" name="submit" class="khalti-btn">Pay with Khalti</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="order-wrapper">
+            <h3>My Orders</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                <?php
+                $user_id = $_SESSION['id'];
+                $counter = 0;
+                $res = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        $amount = $row['price'] * $row['product_quantity'];
+                        ?>
+                        <tr data-id="<?php echo $row['card_id']; ?>" data-price="<?php echo $row['price']; ?>">
+                            <td><?php echo ++$counter; ?></td>
+                            <td>
+                                <img src="../uploads/<?php echo $row['product_image']; ?>" alt="Product">
+                                <p><?php echo $row['product_name']; ?></p>
+                            </td>
+                            <td>₹<?php echo number_format($row['price'], 2); ?></td>
+                            <td class="quantity-control">
+                                <form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
+                                    <input type="number" name="product_quantity" min=1 value="<?php echo $row['product_quantity'] ?>">
+                                    <input type="submit" name="updateCart" value="update">
+                                </form>
+                            </td>
+                            <td class="total-price">₹<?php echo number_format($amount, 2); ?></td>
+                            <td>
+                                <form action="./updateCart.php" method="post">
+                                    <input type="hidden" name="card_id" value="<?php echo $row['card_id'] ?>">
+                                    <input type="submit" name="remove" value="remove">
+                                </form>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>No orders found.</td></tr>";
+                }
+                ?>
+                </tbody>
+            </table>
+            <div class="summary">
+                <div>Cart Total: ₹<span id="cart-total"><?php echo number_format($totalAmount, 2); ?></span></div>
+                <div>Shipping Charges: ₹<span id="shipping"><?php echo number_format($shippingCharge, 2); ?></span></div>
+                <div class="total-amount">Total Amount: ₹<span id="final-total"><?php echo number_format($finalTotal, 2); ?></span></div>
             </div>
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
-    
     <script>
-        // Highlight selected payment method
-        document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                document.querySelectorAll('.payment-method').forEach(method => {
-                    method.classList.remove('selected');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Update totals when quantity changes
+            function updateTotals() {
+                let total = 0;
+                document.querySelectorAll(".total-price").forEach(item => {
+                    total += parseFloat(item.innerText.replace("₹", ""));
                 });
-                this.closest('.payment-method').classList.add('selected');
-            });
-            
-            // Initialize selected state
-            if (radio.checked) {
-                radio.closest('.payment-method').classList.add('selected');
+                document.getElementById("cart-total").innerText = total.toFixed(2);
+                const shipping = parseFloat(document.getElementById("shipping").innerText);
+                document.getElementById("final-total").innerText = (total + shipping).toFixed(2);
+                document.querySelector("input[name='amount']").value = (total + shipping) * 100;
             }
-        });
-
-        // Client-side phone number validation
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const phoneInput = document.getElementById('phone');
-            const phoneRegex = /^[0-9]{10}$/;
             
-            if (!phoneRegex.test(phoneInput.value)) {
-                alert('Please enter a valid 10-digit phone number');
-                phoneInput.focus();
-                e.preventDefault();
-            }
+            // Initialize totals
+            updateTotals();
         });
     </script>
 </body>
