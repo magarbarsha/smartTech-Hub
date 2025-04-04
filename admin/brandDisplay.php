@@ -97,7 +97,7 @@ $result = mysqli_query($conn, $sql);
                 <td><img src="../uploads/<?php echo htmlspecialchars($row['brand_logo']); ?>" alt="Brand Logo"></td>
                 <td>
                     <div class="action-buttons">
-                        <a href="products.php?brand=<?php echo $row['brand_name']; ?>" class="edit">View Products</a>
+                        <a href="productDisplay.php?brand=<?php echo $row['brand_name']; ?>" class="edit">View Products</a>
                         <a href="editBrand.php?id=<?php echo $row['id']; ?>" class="edit">Edit</a>
                         <a href="deleteBrand.php?id=<?php echo $row['id']; ?>" class="delete" onclick="return confirm('Are you sure you want to delete this brand?');">Delete</a>
                     </div>

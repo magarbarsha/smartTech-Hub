@@ -55,28 +55,28 @@
     <section class="logo-section">
        
     <div class="logo-container">
-    <a href="dell.php" target="_blank">
+    <a href="dell.php" >
         <img src="images/logo5.svg" alt="Dell">
     </a>
-    <a href="asus.php" target="_blank">
+    <a href="asus.php">
         <img src="images/logo1.png" alt="Asus">
     </a>
     <!-- <a href="https://www.hp.com" target="_blank">
         <img src="images/logo2.png" alt="HP">
     </a> -->
-    <a href="apple.php" target="_blank">
+    <a href="apple.php" >
         <img src="images/logo10.svg" alt="Apple">
     </a>
     <!-- <a href="lenova.php" target="_blank">
         <img src="images/logo5.svg" alt="Lenovo">
     </a> -->
-    <a href="hp.php" target="_blank">
+    <a href="hp.php">
         <img src="images/logo6.svg" alt="Lenovo">
     </a>
-    <a href="aser.php" target="_blank">
+    <a href="acer.php" >
         <img src="images/logo7.svg" alt="Lenovo">
     </a>
-    <a href="lenovo.php" target="_blank">
+    <a href="lenovo.php" >
         <img src="images/logo8.svg" alt="Lenovo">
     </a>
     

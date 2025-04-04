@@ -48,12 +48,12 @@
             margin-bottom: 12px; /* Reduced from 15px */
             font-weight: bold;
             letter-spacing: 0.5px;
-            color: #000000;
+            color: whitesmoke;
         }
 
         .footer-section p,
         .footer-section ul {
-            color: #333333;
+            color: whitesmoke;
             margin: 4px 0; /* Reduced from 5px */
             font-size: 14px; /* Increased from 12px */
         }
@@ -68,7 +68,7 @@
         }
 
         .footer-section ul li a {
-            color: #333333;
+            color: whitesmoke;
             text-decoration: none;
             transition: color 0.3s ease;
         }

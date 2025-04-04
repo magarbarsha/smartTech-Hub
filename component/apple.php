@@ -2,7 +2,7 @@
 include '../includes/config.php';
 
 // The brand_name is now hardcoded as 'hp', since you're fetching HP products
-$brand_name = 'hp';
+$brand_name = 'mac';
 
 // Prepared statement for security
 $sql = "
@@ -24,7 +24,7 @@ $productResult = mysqli_stmt_get_result($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HP Products | Premium Technology Solutions</title>
+    <title>Mac Products | Premium Technology Solutions</title>
     <link rel="stylesheet" href="../assets/css/brand.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -32,7 +32,7 @@ $productResult = mysqli_stmt_get_result($stmt);
 <?php include './nav.php'; ?>
     <div class="container">
         <div class="header">
-            <h2>HP Premium Products</h2>
+            <h2>Mac Premium Products</h2>
             <p class="subtitle">Innovation that matters for your business</p>
         </div>
 
@@ -40,7 +40,7 @@ $productResult = mysqli_stmt_get_result($stmt);
             <?php if (mysqli_num_rows($productResult) > 0): ?>
                 <?php while ($product = mysqli_fetch_assoc($productResult)): ?>
                     <div class="product-card">
-                        <div class="product-badge">HP Official</div>
+                        <div class="product-badge">Mac Official</div>
                         <div class="image-container">
                             <img src="../uploads/<?= htmlspecialchars($product['product_image']) ?>" 
                                  alt="<?= htmlspecialchars($product['product_name']) ?>" 
@@ -73,12 +73,11 @@ $productResult = mysqli_stmt_get_result($stmt);
             <?php else: ?>
                 <div class="no-products">
                     <img src="../assets/images/no-products.svg" alt="No products found">
-                    <p>Currently no HP products available. Check back soon!</p>
+                    <p>Currently no Mac products available. Check back soon!</p>
                 </div>
             <?php endif; ?>
         </div>
     </div>
-
     <?php include './footer.php'; ?>
 </body>
 </html>

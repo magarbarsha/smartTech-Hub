@@ -1,22 +1,13 @@
 <?php
 include '../includes/config.php';
 
-// Check if a brand is selected from the URL
-$brand_name = isset($_GET['brand']) ? mysqli_real_escape_string($conn, $_GET['brand']) : '';
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-// Correct SQL query based on the relationship between prod and branch tables
-$sql = "
-    SELECT prod.* 
-    FROM prod
-    JOIN branch ON prod.id = branch.id
-    WHERE branch.brand_name = '$brand_name'
-    ORDER BY prod.id DESC
-";
-
-$productResult = mysqli_query($conn, $sql);
-
-// Debugging: Output the query to check if it is correct
-// echo $sql;
+// Fetch all brands
+$brandQuery = "SELECT * FROM branch";
+$brandResult = $conn->query($brandQuery);
 ?>
 
 <!DOCTYPE html>
@@ -24,32 +15,51 @@ $productResult = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($brand_name); ?> Products</title>
-    <link rel="stylesheet" href="../assets/css/dashboard_style.css">
+    <title>Laptop Store</title>
+    <style>
+        .brand-logo { cursor: pointer; width: 100px; }
+        .product-card { border: 1px solid #ddd; padding: 10px; margin: 10px; display: inline-block; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Products for <?php echo htmlspecialchars($brand_name); ?></h2>
-
-    <div class="product-list">
-        <?php
-        if (mysqli_num_rows($productResult) > 0) {
-            while ($product = mysqli_fetch_assoc($productResult)) {
-                echo "<div class='product-card'>";
-                echo "<h3>" . htmlspecialchars($product['product_name']) . "</h3>"; 
-                echo "<p>" . htmlspecialchars($product['description']) . "</p>";
-                echo "<p>Price: $" . number_format($product['price'], 2) . "</p>";
-                echo "<p>Brand: " . htmlspecialchars($product['brand_name']) . "</p>";  
-                echo "</div>";
-            }
-        } else {
-            echo "<p>No products found for this brand.</p>";
-        }
-        ?>
+    <h1>Select a Brand</h1>
+    
+    <!-- Display Brand Logos -->
+    <div id="brands">
+        <?php while ($brand = $brandResult->fetch_assoc()) { ?>
+            <img class="brand-logo" src="uploads/<?php echo $brand['brand_logo']; ?>" alt="<?php echo $brand['brand_name']; ?>" data-brand="<?php echo $brand['id']; ?>">
+        <?php } ?>
     </div>
-</div>
 
-<script src="../assets/js/dashboard_script.js"></script>
+    <div id="product-list"></div>
+
+    <script>
+        document.querySelectorAll(".brand-logo").forEach(function(logo) {
+            logo.addEventListener("click", function() {
+                var brandId = logo.getAttribute("data-brand");
+
+                // Fetch products for the selected brand
+                fetch("fetch_products.php?brand_id=" + brandId)
+                    .then(response => response.json())
+                    .then(products => {
+                        let output = "";
+                        products.forEach(product => {
+                            output += `
+                                <div class="product-card">
+                                    <img src="uploads/${product.product_image}" width="100"><br>
+                                    <b>${product.product_name}</b><br>
+                                    Price: $${product.price}<br>
+                                    Quantity: ${product.quantity}<br>
+                                    Description: ${product.description}
+                                </div>
+                            `;
+                        });
+                        document.getElementById("product-list").innerHTML = output;
+                    });
+            });
+        });
+    </script>
+
 </body>
 </html>

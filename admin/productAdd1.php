@@ -5,7 +5,6 @@ if (isset($_POST['addProduct'])) {
     // Sanitize inputs
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $category_id = mysqli_real_escape_string($conn, $_POST['category_id']);
-    $brand_id = mysqli_real_escape_string($conn, $_POST['brand_id']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
@@ -34,13 +33,13 @@ if (isset($_POST['addProduct'])) {
                 // Move the uploaded file to the server
                 if (move_uploaded_file($file_tmp_name, $upload_path)) {
                     // Prepared statement to insert product data
-                    $sql = "INSERT INTO prod (product_name, category_id, product_image, quantity, price, description, brand_id) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    $sql = "INSERT INTO prod (product_name, category_id, product_image, quantity, price, description) 
+                            VALUES (?, ?, ?, ?, ?, ?)";
 
                     // Initialize a prepared statement
                     if ($stmt = mysqli_prepare($conn, $sql)) {
                         // Bind parameters to the prepared statement
-                        mysqli_stmt_bind_param($stmt, 'sssiiss', $product_name, $category_id, $file_with_timestamp, $quantity, $price, $description, $brand_id);
+                        mysqli_stmt_bind_param($stmt, 'sssiis', $product_name, $category_id, $file_with_timestamp, $quantity, $price, $description);
 
                         // Execute the statement
                         if (mysqli_stmt_execute($stmt)) {
@@ -77,6 +76,7 @@ if (isset($_POST['addProduct'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <link rel="stylesheet" href="../assets/css/productstyle.css">
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.2.0/ckeditor5.css">
+
 </head>
 <body>
     <?php include './adminsidenav.php'; ?>
@@ -84,8 +84,7 @@ if (isset($_POST['addProduct'])) {
     <!-- Dashboard Content Section (Cards) -->
     <div class="dashboard-content">
         <form action="productAdd.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="product_name" placeholder="Enter the product name" required><br><br>
-            
+            <input type="text" name="product_name" placeholder="Enter the product name" required>
             <select name="category_id" required>
                 <option value="none" selected disabled>---Select Category---</option>
                 <?php
@@ -96,26 +95,11 @@ if (isset($_POST['addProduct'])) {
                     <option value="<?php echo $row['id']; ?>"><?php echo $row['category_name']; ?></option>
                 <?php }
                 ?>
-            </select><br><br>
-
-            <!-- Brand Selection -->
-            <select name="brand_id" required>
-                <option value="none" selected disabled>---Select Brand---</option>
-                <?php
-                $sql = "SELECT * FROM branch"; // Fetching brands from the branch table
-                $brand_res = mysqli_query($conn, $sql);
-                while ($brand_row = mysqli_fetch_array($brand_res)) {
-                    ?>
-                    <option value="<?php echo $brand_row['id']; ?>"><?php echo $brand_row['brand_name']; ?></option>
-                <?php }
-                ?>
-            </select><br><br>
-
-            <input type="file" name="product_image" id="" accept="image/png, image/jpeg" required><br><br>
-            <input type="number" name="quantity" placeholder="Enter quantity" required min="1"><br><br>
-            <input type="number" name="price" placeholder="Enter price" required step="0.01" min="0"><br><br>
-            <textarea rows="8" name="description" id="editor" placeholder="Enter description"></textarea><br><br>
-
+            </select>
+            <input type="file" name="product_image" id="" accept="image/png, image/jpeg" required>
+            <input type="number" name="quantity" placeholder="Enter quantity" required min="1">
+            <input type="number" name="price" placeholder="Enter price" required step="0.01" min="0">
+            <textarea rows="8"  name="description" id="editor" placeholder="Enter description"></textarea>
             <input type="submit" name="addProduct" value="Add Product">
         </form>
     </div>
@@ -124,21 +108,32 @@ if (isset($_POST['addProduct'])) {
     <script src="https://cdn.ckeditor.com/ckeditor5/44.2.0/ckeditor5.umd.js"></script>
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                licenseKey: 'YOUR_LICENSE_KEY',
-                plugins: [ Essentials, Paragraph, Bold, Italic, Font, List ],
-                toolbar: [
-                    'undo', 'redo', '|', 'bold', 'italic', '|',
-                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList'
-                ]
-            })
-            .then(editor => {
-                window.editor = editor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+			const {
+				ClassicEditor,
+				Essentials,
+				Paragraph,
+				Bold,
+				Italic,
+				Font,
+                List
+			} = CKEDITOR;
+			// Create a free account and get <YOUR_LICENSE_KEY>
+			// https://portal.ckeditor.com/checkout?plan=free
+			ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzE2MzE5OTksImp0aSI6IjRlNmFjZTJkLTAzMDgtNGYwYS1hYWQ2LTc3NjdjYTE0NjI3MSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCJdLCJ2YyI6Ijc2MjAwNTRkIn0.h9PEF1D3pqFho5Zt6U9HNbd2W2xHtdtfUu8RW0QUdALAK3LEmYos4uD-q7vOX79q4KyImSxNPidNR1gBs9HvBw',
+					plugins: [ Essentials, Paragraph, Bold, Italic, Font, List ],
+					toolbar: [
+						'undo', 'redo', '|', 'bold', 'italic', '|',
+						'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor','bulletedList','numberedList'
+					]
+				} )
+				.then( editor => {
+					window.editor = editor;
+				} ) 
+				.catch( error => {
+					console.error( error );
+				} );
+		</script>
 </body>
 </html>

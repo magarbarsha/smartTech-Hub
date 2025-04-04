@@ -63,9 +63,15 @@
         #voice-search-btn {
             margin-left: 10px;
         }
+        .menu{
+            position:relative;
+            top:0;
+        }
+        
     </style>
 </head>
 <body>
+<?php include './nav.php'; ?>
     <div class="top-navbar">
         <div class="social-icons">
             <a href="https://www.facebook.com" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -76,6 +82,7 @@
             <a href="userOrder.php">My Orders</a> |
             <a href="signin.php">Sign In</a> |
             <a href="signup.php">Sign Up</a> |
+            <a href="hospitalblog.php">Laptop Hospital</a> |
             <a href="../logout.php">Logout</a>
         </div>
     </div>

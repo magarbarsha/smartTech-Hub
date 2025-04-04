@@ -103,8 +103,7 @@ include '../includes/config.php';
                         <p><strong>Price:</strong> $<?php echo number_format($row['price'], 2); ?></p>
                         <p><strong>Description:</strong> <?php echo $row['description']; ?></p>
                     </div>
-                    <div class="product-actions">
-                        <form action="addToCart.php" method="post">
+                    <form action="addToCart.php" method="post">
                             <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
                             <button class="cart-btn" name="addtocart">ADD TO CART</button>
                         </form>
@@ -112,7 +111,6 @@ include '../includes/config.php';
                             <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
                             <button class="wishlist-btn" name="addtowishlist">♡ Wishlist</button>
                         </form>
-                    </div>
                 </div>
         <?php
             }

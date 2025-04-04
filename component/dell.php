@@ -1,25 +1,22 @@
 <?php
-
 include '../includes/config.php';
 
-// Check if a brand is selected from the URL
-$brand_name = isset($_GET['brand']) ? mysqli_real_escape_string($conn, $_GET['brand']) : '';
+// The brand_name is now hardcoded as 'hp', since you're fetching HP products
+$brand_name = 'dell';
 
-// Ensure the brand_name column exists or join with the branch table
+// Prepared statement for security
 $sql = "
-    SELECT prod.* 
+    SELECT prod.*, branch.brand_name 
     FROM prod
-    JOIN branch ON prod.id = branch.id
-    WHERE branch.brand_name = '$brand_name'
+    JOIN branch ON prod.brand_id = branch.id
+    WHERE branch.brand_name = ?
     ORDER BY prod.id DESC
 ";
 
-
-$productResult = mysqli_query($conn, $sql);
-
-
-
-
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "s", $brand_name);
+mysqli_stmt_execute($stmt);
+$productResult = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -27,33 +24,71 @@ $productResult = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($brand_name); ?> Products</title>
-    <link rel="stylesheet" href="../assets/css/dashboard_style.css">
+    <title>HP Products | Premium Technology Solutions</title>
+    <link rel="stylesheet" href="../assets/css/brand.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php include './nav.php'; ?>
+    <div class="container">
+        <div class="header">
+            <h2>Dell Premium Products</h2>
+            <p class="subtitle">Innovation that matters for your business</p>
+        </div>
 
-
-<div class="container">
-    <h2>Products for <?php echo htmlspecialchars($brand_name); ?></h2>
-
-    <div class="product-list">
-        <?php
-        if (mysqli_num_rows($productResult) > 0) {
-            while ($product = mysqli_fetch_assoc($productResult)) {
-                echo "<div class='product-card'>";
-                echo "<h3>" . htmlspecialchars($product['brand_name']) . "</h3>";
-                echo "<p>" . htmlspecialchars($product['description']) . "</p>";
-                echo "<p>Price: $" . number_format($product['price'], 2) . "</p>";
-                echo "<p>Brand: " . htmlspecialchars($product['brand_name']) . "</p>";
-                echo "</div>";
-            }
-        } else {
-            echo "<p>No products found for this brand.</p>";
-        }
-        ?>
+        <div class="product-list">
+            <?php if (mysqli_num_rows($productResult) > 0): ?>
+                <?php while ($product = mysqli_fetch_assoc($productResult)): ?>
+                    <div class="product-card">
+                        <div class="product-badge">Dell Official</div>
+                        <div class="image-container">
+                            <img src="../uploads/<?= htmlspecialchars($product['product_image']) ?>" 
+                                 alt="<?= htmlspecialchars($product['product_name']) ?>" 
+                                 loading="lazy">
+                        </div>
+                        <div class="product-content">
+                            <h3><?= htmlspecialchars($product['product_name']) ?></h3>
+                            <div class="rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="review-count">(42 reviews)</span>
+                            </div>
+                            <p class="description"><?= htmlspecialchars($product['description']) ?></p>
+                            <div class="price-container">
+                                <span class="price">$<?= number_format($product['price'], 2) ?></span>
+                                <?php if ($product['price'] > 500): ?>
+                                    <span class="discount-badge">Save 10%</span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="button-container">
+                            <form action="addToCart.php" method="post">
+                            <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
+                            <button class="cart-btn" name="addtocart"><i class="icon-cart"></i> Add to Cart
+                            </button>
+                        </form>
+                        <form action="addToWishlist.php" method="post">
+                            <input type="hidden" name="pid" value="<?php echo $row['id'] ?>">
+                            <button class="wishlist-btn" name="addtowishlist"><i class="icon-heart"></i> Wishlist
+                                </button>
+                        </form>
+                </div>
+                                <!-- <button class="cart-btn">
+                                    <i class="icon-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="icon-heart"></i> Wishlist
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="no-products">
+                    <img src="../assets/images/no-products.svg" alt="No products found">
+                    <p>Currently no dell products available. Check back soon!</p>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
-
-<script src="../assets/js/dashboard_script.js"></script>
+    <?php include './footer.php'; ?>
 </body>
 </html>
