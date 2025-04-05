@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/navbar2.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body{
@@ -68,10 +67,44 @@
             top:0;
         }
         
+        /* Laptop Hospital dropdown styles */
+        .laptop-hospital-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .laptop-hospital-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .laptop-hospital-dropdown:hover .laptop-hospital-dropdown-content {
+            display: block;
+        }
+        
+        .laptop-hospital-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .laptop-hospital-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-<?php include './nav.php'; ?>
+
     <div class="top-navbar">
         <div class="social-icons">
             <a href="https://www.facebook.com" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -82,7 +115,7 @@
             <a href="userOrder.php">My Orders</a> |
             <a href="signin.php">Sign In</a> |
             <a href="signup.php">Sign Up</a> |
-            <a href="hospitalblog.php">Laptop Hospital</a> |
+            <a href="blog.php">Blog</a> |
             <a href="../logout.php">Logout</a>
         </div>
     </div>
@@ -108,6 +141,20 @@
             </div>
 
             <div class="nav-icons">
+                <!-- Laptop Hospital dropdown -->
+                <div class="laptop-hospital-dropdown">
+                    <button class="laptop-hospital-btn">
+                        <i class="fas fa-laptop-medical"></i> Laptop Hospital
+                    </button>
+                    <div class="laptop-hospital-dropdown-content">
+                        <h4>Diagnose Your Laptop Issues</h4>
+                        <p>Get expert diagnosis and repair solutions for common laptop problems</p>
+                        <a href="laptop-hospital.php" class="btn" style="display: block; text-align: center; margin-top: 10px;">
+                            <i class="fas fa-stethoscope"></i> Start Diagnosis
+                        </a>
+                    </div>
+                </div>
+                
                 <a href="../login.php" aria-label="User Account"><i class="fa-regular fa-user"></i></a>
                 <a href="wishListView.php" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
                 <a href="checkoutpage.php" aria-label="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -118,7 +165,7 @@
         <div class="menu">
             <ul>
                 <li>
-                    <a href="index2.php">
+                    <a href="index.php">
                         <i class="fas fa-home"></i> HOME
                     </a>
                 </li>

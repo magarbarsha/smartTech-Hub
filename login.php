@@ -1,4 +1,6 @@
 <?php
+
+
 session_start();
 require './includes/config.php';
 
@@ -18,7 +20,7 @@ if (isset($_POST['login'])) {
                 header('location: ./admin/dashboard.php');
             }
             if ($role == 'user') {
-                header('location: ./component/index2.php');
+                header('location: ./component/index.php');
             }
         } else {
             echo "Password donot match";

@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laptop Hospital - Diagnose Your Laptop Issues</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Laptop Hospital - SmartTech Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
+            --primary-color: #007bff;
+            --secondary-color: #0056b3;
             --accent-color: #4fc3f7;
-            --success-color: #4caf50;
-            --warning-color: #ff9800;
-            --danger-color: #f44336;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
             --light-color: #f8f9fa;
-            --dark-color: #212529;
+            --dark-color: #343a40;
             --gray-color: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -27,25 +28,28 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f7fa;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
             color: var(--dark-color);
             line-height: 1.6;
+            padding-top: 0;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 2rem auto;
+            padding: 0 20px;
         }
 
+        /* Header Styles */
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: var(--white);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-color);
         }
 
         .logo {
@@ -53,7 +57,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
 
         .logo i {
@@ -61,18 +65,26 @@
             color: var(--primary-color);
         }
 
+        .logo h1 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+        }
+
         .tagline {
             color: var(--gray-color);
             font-size: 1.1rem;
+            margin-top: 0.5rem;
         }
 
+        /* Step Styles */
         .step {
             display: none;
-            background-color: white;
-            padding: 30px;
+            background-color: var(--white);
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
         }
 
         .step.active {
@@ -81,48 +93,74 @@
         }
 
         .step h2 {
-            margin-bottom: 25px;
-            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
             text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
         }
 
+        .step h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Options Grid */
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .option-card {
-            background-color: var(--light-color);
+            background-color: var(--white);
             border-radius: 8px;
-            padding: 25px;
+            padding: 1.5rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .option-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
         }
 
         .option-card.selected {
             border-color: var(--primary-color);
-            background-color: #e7f1ff;
+            background-color: rgba(0, 123, 255, 0.05);
         }
 
         .option-card .icon {
             font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            background-color: rgba(0, 123, 255, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .option-card h3 {
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
             color: var(--dark-color);
+            font-size: 1.2rem;
         }
 
         .option-card p {
@@ -130,18 +168,19 @@
             font-size: 0.9rem;
         }
 
+        /* Symptoms List */
         .symptoms-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .symptom-item {
             display: flex;
             align-items: center;
-            padding: 15px;
-            background-color: white;
+            padding: 1rem 1.5rem;
+            background-color: var(--white);
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             border: 1px solid #e9ecef;
@@ -150,26 +189,30 @@
         }
 
         .symptom-item:hover {
-            border-color: var(--accent-color);
+            border-color: var(--primary-color);
+            transform: translateX(5px);
         }
 
         .symptom-item input {
-            margin-right: 15px;
+            margin-right: 1rem;
             width: 20px;
             height: 20px;
             cursor: pointer;
+            accent-color: var(--primary-color);
         }
 
         .symptom-item label {
             flex: 1;
             cursor: pointer;
+            font-size: 0.95rem;
         }
 
+        /* Button Styles */
         .btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 0.75rem 1.5rem;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
@@ -177,24 +220,25 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 0.5rem;
+            font-weight: 500;
         }
 
         .btn:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn:disabled {
-            background-color: #cccccc;
+            background-color: #adb5bd;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
         .btn.secondary {
-            background-color: white;
+            background-color: var(--white);
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
         }
@@ -203,26 +247,35 @@
             background-color: #f0f7ff;
         }
 
+        /* Results Container */
         .results-container {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 1.5rem;
         }
 
         .diagnosis-card, .solution-card {
-            background-color: white;
-            padding: 25px;
+            background-color: var(--white);
+            padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
         }
 
         .diagnosis-card h3, .solution-card h3 {
-            margin-bottom: 15px;
-            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .diagnosis-card h3 i, .solution-card h3 i {
+            color: var(--primary-color);
         }
 
         .confidence-meter {
-            margin-top: 20px;
+            margin-top: 1.5rem;
         }
 
         .confidence-bar {
@@ -230,75 +283,89 @@
             background-color: #e9ecef;
             border-radius: 5px;
             overflow: hidden;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
         }
 
         .confidence-fill {
             height: 100%;
             width: 85%;
-            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            background: linear-gradient(90deg, var(--success-color), #5cb85c);
             border-radius: 5px;
+            transition: width 0.5s ease;
         }
 
         .solution-text {
             font-size: 1.1rem;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             line-height: 1.6;
+            color: var(--dark-color);
         }
 
         .solution-details {
             background-color: #f8f9fa;
-            padding: 15px;
+            padding: 1rem;
             border-radius: 5px;
-            border-left: 4px solid var(--accent-color);
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.95rem;
         }
 
         .action-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 1.5rem;
+            gap: 1rem;
         }
 
+        /* Repair Options */
         .repair-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .repair-card {
-            background-color: white;
-            padding: 25px;
+            background-color: var(--white);
+            padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .repair-card:hover {
+            transform: translateY(-5px);
         }
 
         .repair-card h3 {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.3rem;
         }
 
         .repair-card p {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             color: var(--gray-color);
+            line-height: 1.5;
         }
 
         .pros-cons {
             list-style: none;
-            margin: 20px 0;
+            margin: 1rem 0;
             flex-grow: 1;
         }
 
         .pros-cons li {
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .fa-check-circle {
@@ -314,16 +381,19 @@
             margin-top: auto;
         }
 
+        /* Navigation */
         .navigation {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid #e9ecef;
         }
 
         .step-indicator {
             display: flex;
-            gap: 10px;
+            gap: 0.75rem;
         }
 
         .dot {
@@ -352,46 +422,97 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--white);
             margin: 5% auto;
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
             width: 80%;
             max-width: 800px;
             position: relative;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid var(--primary-color);
         }
 
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 1rem;
+            right: 1rem;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--gray-color);
+            transition: color 0.3s;
         }
 
         .close-modal:hover {
-            color: var(--dark-color);
+            color: var(--danger-color);
         }
 
         .guide-content {
-            margin: 20px 0;
+            margin: 1.5rem 0;
+        }
+
+        .guide-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         .guide-content ol {
-            padding-left: 20px;
-            margin: 15px 0;
+            padding-left: 1.5rem;
+            margin: 1rem 0;
         }
 
         .guide-content li {
-            margin-bottom: 15px;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
         }
 
         .tools-needed, .time-estimate {
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
             border-top: 1px solid #e9ecef;
+        }
+
+        .tools-needed h3, .time-estimate h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tools-needed ul {
+            list-style: none;
+        }
+
+        .tools-needed li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tools-needed li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Safety Notice */
+        .safety-notice {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-left: 4px solid #ffeeba;
         }
 
         /* Animations */
@@ -407,6 +528,20 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .step {
+                padding: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .options-grid {
                 grid-template-columns: 1fr;
@@ -417,22 +552,51 @@
             }
             
             .modal-content {
-                width: 95%;
-                margin: 20px auto;
+                width: 90%;
+                padding: 1.5rem;
             }
             
             .action-buttons {
                 flex-direction: column;
-                gap: 10px;
             }
             
             .btn {
                 width: 100%;
             }
+            
+            .step h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo i {
+                font-size: 2rem;
+            }
+            
+            .step {
+                padding: 1rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <?php include 'nav.php'; ?>
+    
     <div class="container">
         <header class="header">
             <div class="logo">
@@ -443,7 +607,7 @@
         </header>
 
         <main class="diagnostic-flow">
-            <!-- Step 1: Select Problem Category -->
+            <!-- Step 1: Problem Selection -->
             <div class="step active" id="step1">
                 <h2>What type of problem are you experiencing?</h2>
                 <div class="options-grid">
@@ -494,7 +658,7 @@
                 <h2>Diagnosis Results</h2>
                 <div class="results-container">
                     <div class="diagnosis-card">
-                        <h3>Most Likely Issue</h3>
+                        <h3><i class="fas fa-diagnoses"></i> Most Likely Issue</h3>
                         <p id="primary-diagnosis">Loading...</p>
                         <div class="confidence-meter">
                             <div class="confidence-bar">
@@ -505,7 +669,7 @@
                     </div>
                     
                     <div class="solution-card">
-                        <h3>Recommended Solution</h3>
+                        <h3><i class="fas fa-lightbulb"></i> Recommended Solution</h3>
                         <div id="solution-content">
                             <p class="solution-text">Loading solution...</p>
                             <div class="solution-details" id="solution-details"></div>
@@ -529,33 +693,36 @@
                 <div class="repair-options">
                     <div class="repair-card" data-difficulty="easy">
                         <h3><i class="fas fa-wrench"></i> DIY Fix</h3>
-                        <p>Step-by-step guide to fix it yourself</p>
+                        <p>Step-by-step guide to fix it yourself with common tools and basic technical knowledge.</p>
                         <ul class="pros-cons">
-                            <li><i class="fas fa-check-circle"></i> Least expensive</li>
-                            <li><i class="fas fa-check-circle"></i> Immediate</li>
+                            <li><i class="fas fa-check-circle"></i> Least expensive option</li>
+                            <li><i class="fas fa-check-circle"></i> Immediate solution</li>
                             <li><i class="fas fa-times-circle"></i> Requires some technical skill</li>
+                            <li><i class="fas fa-times-circle"></i> No professional warranty</li>
                         </ul>
                         <button class="btn repair-select" data-option="diy">View Guide</button>
                     </div>
                     
                     <div class="repair-card" data-difficulty="medium">
                         <h3><i class="fas fa-store"></i> Local Repair Shop</h3>
-                        <p>Find certified technicians near you</p>
+                        <p>Find certified technicians near you who can professionally handle the repair.</p>
                         <ul class="pros-cons">
                             <li><i class="fas fa-check-circle"></i> Professional service</li>
                             <li><i class="fas fa-check-circle"></i> Warranty on repairs</li>
                             <li><i class="fas fa-times-circle"></i> More expensive than DIY</li>
+                            <li><i class="fas fa-check-circle"></i> Faster than manufacturer service</li>
                         </ul>
                         <button class="btn repair-select" data-option="local">Find Shops</button>
                     </div>
                     
                     <div class="repair-card" data-difficulty="hard">
                         <h3><i class="fas fa-box-open"></i> Manufacturer Service</h3>
-                        <p>Official repair from the laptop maker</p>
+                        <p>Official repair from the laptop maker using genuine parts and technicians.</p>
                         <ul class="pros-cons">
                             <li><i class="fas fa-check-circle"></i> Highest quality parts</li>
                             <li><i class="fas fa-check-circle"></i> Preserves warranty</li>
                             <li><i class="fas fa-times-circle"></i> Most expensive option</li>
+                            <li><i class="fas fa-times-circle"></i> May take longer</li>
                         </ul>
                         <button class="btn repair-select" data-option="manufacturer">Contact Manufacturer</button>
                     </div>
@@ -595,7 +762,8 @@
             </div>
         </div>
     </div>
-
+           
+    <?php include 'footer.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // DOM Elements
@@ -846,8 +1014,8 @@
                 
                 // Update confidence meter
                 const confidenceFill = document.getElementById('confidence-fill');
-                confidenceFill.style.width = `${diagnosis.confidence}%`;
-                document.getElementById('confidence-value').textContent = `${diagnosis.confidence}% confidence`;
+                confidenceFill.style.width = diagnosis.confidence + '%';
+                document.getElementById('confidence-value').textContent = diagnosis.confidence + '% confidence';
                 
                 // Store diagnosis for repair options
                 nextStepsBtn.dataset.diagnosisId = diagnosis.id;

@@ -251,7 +251,6 @@
             <div class="payment-methods">
                 <img src="./images/cash.png" alt="Cash on Delivery">
                 <img src="./images/esewa.png" alt="eSewa">
-                <img src="fonepay.png" alt="FonePay">
                 <img src="./images/kalti.jpeg" alt="IPS">
             </div>
         </div>

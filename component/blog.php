@@ -892,54 +892,8 @@
                 </div>
             </div>
         </aside>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <a href="index.html" class="footer-logo">
-                        <img src="https://via.placeholder.com/40" alt="SmartTechHub Logo">
-                        <span class="footer-logo-text">Smart<span>Tech</span>Hub</span>
-                    </a>
-                    <p>Your trusted source for the latest laptops, expert reviews, and tech insights since 2018.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li><a href="#">Gaming Laptops</a></li>
-                        <li><a href="#">Business Laptops</a></li>
-                        <li><a href="#">Ultrabooks</a></li>
-                        <li><a href="#">Chromebooks</a></li>
-                        <li><a href="#">Workstations</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley, CA 94025</p>
-                    <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@smarttechhub.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 SmartTechHub. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </main> 
+                        
             </div>
         </div>
     </footer>
