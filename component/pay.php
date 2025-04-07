@@ -2,7 +2,11 @@
 session_start();
 include '../includes/config.php';
 
-if(isset($_POST['submit'])){
+// Enable error reporting for debugging (remove in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if(isset($_POST['submit'])) {
     // Get user details using prepared statements
     $user_id = $_SESSION['id'];
     
@@ -51,17 +55,20 @@ if(isset($_POST['submit'])){
         exit();
     }
     
+    // For test mode, use specific test phone number (9800000000)
+    $phone = '9800000000'; // Force test number for testing
+    
     // Prepare Khalti payload
     $postFields = array(
         "return_url" => "http://localhost/SmartTech%20Hub/component/payment_response.php",
-        "website_url" => "https://dev.khalti.com/api/v2/", // Change to your actual website
+        "website_url" => "https://dev.khalti.com/api/v2/", // Changed to your local URL
         "amount" => $amount * 100, // Khalti expects amount in paisa
         "purchase_order_id" => $purchase_order_id,
         "purchase_order_name" => $purchase_order_name,
         "customer_info" => array(
             "name" => $name,
             "email" => $email,
-            "phone" => $phone
+            "phone" => $phone // Use test number 9800000000 in test mode
         )
     );
 
@@ -70,17 +77,17 @@ if(isset($_POST['submit'])){
     // Initiate cURL request to Khalti
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://a.khalti.com/api/v2/epayment/initiate/', // Changed from dev.khalti to a.khalti
+        CURLOPT_URL => 'https://a.khalti.com/api/v2/epayment/initiate/',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30, // Reduced timeout
+        CURLOPT_TIMEOUT => 30,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => $jsonData,
         CURLOPT_HTTPHEADER => array(
-            'Authorization: key 3da50215902547fa9b0b928e7fe7ab7b', // Make sure this is your live/test secret key
+            'Authorization: key 16a9c2d3c62f447094e41784cb689de8', // Use test key for testing
             'Content-Type: application/json',
         ),
     ));
@@ -130,4 +137,8 @@ if(isset($_POST['submit'])){
         header("Location: checkoutpage.php");
         exit();
     }
+} else {
+    $_SESSION['error'] = "Invalid request";
+    header("Location: checkoutpage.php");
+exit();
 }

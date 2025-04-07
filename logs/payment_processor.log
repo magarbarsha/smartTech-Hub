@@ -1,0 +1,2611 @@
+{
+    "timestamp": "2025-04-06 19:34:57",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('6HbwRFoRb3Q9w33...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "6HbwRFoRb3Q9w33cVYaoGP",
+        "transaction_id": "VTB2ntQJq3mWiLjQDtJccE",
+        "tidx": "VTB2ntQJq3mWiLjQDtJccE",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2ba66d5000",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2ba66d5000",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "6HbwRFoRb3Q9w33cVYaoGP"
+    }
+}{
+    "timestamp": "2025-04-06 19:37:46",
+    "error": "No input data received",
+    "context": {
+        "trace": "#0 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": [],
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2ba66d5000",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "6HbwRFoRb3Q9w33cVYaoGP"
+    }
+}{
+    "timestamp": "2025-04-06 19:38:43",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token header. Token string should not contain spaces.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('E62BvwDMFKGcJKq...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "E62BvwDMFKGcJKqECTQvbD",
+        "transaction_id": "bfJ2ZrWiR7ydrZCyvtf4ZR",
+        "tidx": "bfJ2ZrWiR7ydrZCyvtf4ZR",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2bbf76ae9e",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2bbf76ae9e",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "E62BvwDMFKGcJKqECTQvbD"
+    }
+}{
+    "timestamp": "2025-04-06 19:44:13",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token header. Token string should not contain spaces.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(233): verifyKhaltiPayment('E62BvwDMFKGcJKq...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "E62BvwDMFKGcJKqECTQvbD",
+        "transaction_id": "bfJ2ZrWiR7ydrZCyvtf4ZR",
+        "tidx": "bfJ2ZrWiR7ydrZCyvtf4ZR",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2bbf76ae9e",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2bbf76ae9e",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "E62BvwDMFKGcJKqECTQvbD"
+    }
+}{
+    "timestamp": "2025-04-06 19:45:32",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token header. Token string should not contain spaces.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(233): verifyKhaltiPayment('uQh27H5bW9egYBF...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "uQh27H5bW9egYBFPXPP9PM",
+        "transaction_id": "kpeGtXFUGFtpsxUdc9JHjW",
+        "tidx": "kpeGtXFUGFtpsxUdc9JHjW",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2bd8ca90bc",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2bd8ca90bc",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "uQh27H5bW9egYBFPXPP9PM"
+    }
+}{
+    "timestamp": "2025-04-06 19:50:41",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('VvsxSzqfibURo72...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "VvsxSzqfibURo72a9Cy4VM",
+        "transaction_id": "h7WAoo9GuhT657A6TttDbE",
+        "tidx": "h7WAoo9GuhT657A6TttDbE",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2be0688884",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2be0688884",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "VvsxSzqfibURo72a9Cy4VM"
+    }
+}{
+    "timestamp": "2025-04-06 19:55:50",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token header. Token string should not contain spaces.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('VvsxSzqfibURo72...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "VvsxSzqfibURo72a9Cy4VM",
+        "transaction_id": "h7WAoo9GuhT657A6TttDbE",
+        "tidx": "h7WAoo9GuhT657A6TttDbE",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2be0688884",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2be0688884",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "VvsxSzqfibURo72a9Cy4VM"
+    }
+}{
+    "timestamp": "2025-04-06 20:01:09",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token header. Token string should not contain spaces.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('FjMmLdZN34LtEs5...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "FjMmLdZN34LtEs5GpubGfG",
+        "transaction_id": "dVteqG8o2LJAUWzT4KHva4",
+        "tidx": "dVteqG8o2LJAUWzT4KHva4",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c1473837f",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c1473837f",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "FjMmLdZN34LtEs5GpubGfG"
+    }
+}{
+    "timestamp": "2025-04-06 20:07:37",
+    "error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(232): verifyKhaltiPayment('ZuQj7LjUNSfdP8W...')\n#1 {main}"
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "ZuQj7LjUNSfdP8WMQNSMVE",
+        "transaction_id": "pVcYra24tuiU7eec42XE8n",
+        "tidx": "pVcYra24tuiU7eec42XE8n",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c2b476b1a",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c2b476b1a",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "ZuQj7LjUNSfdP8WMQNSMVE"
+    }
+}{
+    "timestamp": "2025-04-06 20:13:34",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(233): verifyKhaltiPayment('SkfHkQdsiE3G5gY...')\n#1 {main}",
+        "input": {
+            "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+            "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c42e6ae74",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c42e6ae74",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+        "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c42e6ae74",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c42e6ae74",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+    }
+}{
+    "timestamp": "2025-04-06 20:14:22",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(233): verifyKhaltiPayment('SkfHkQdsiE3G5gY...')\n#1 {main}",
+        "input": {
+            "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+            "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c42e6ae74",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c42e6ae74",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+        "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c42e6ae74",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c42e6ae74",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+    }
+}{
+    "timestamp": "2025-04-06 20:15:31",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(233): verifyKhaltiPayment('SkfHkQdsiE3G5gY...')\n#1 {main}",
+        "input": {
+            "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+            "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c42e6ae74",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c42e6ae74",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+        "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c42e6ae74",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c42e6ae74",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+    }
+}{
+    "timestamp": "2025-04-06 20:16:47",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('SkfHkQdsiE3G5gY...')\n#1 {main}",
+        "input": {
+            "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+            "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c42e6ae74",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c42e6ae74",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+        "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c42e6ae74",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c42e6ae74",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+    }
+}{
+    "timestamp": "2025-04-06 20:16:52",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('SkfHkQdsiE3G5gY...')\n#1 {main}",
+        "input": {
+            "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+            "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c42e6ae74",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c42e6ae74",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE",
+        "transaction_id": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "tidx": "Xt3YVV3gRwHwoPhsFJVTL3",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c42e6ae74",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c42e6ae74",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "SkfHkQdsiE3G5gYLc6jttE"
+    }
+}{
+    "timestamp": "2025-04-06 20:17:57",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('mxmojyPKCM6aZff...')\n#1 {main}",
+        "input": {
+            "pidx": "mxmojyPKCM6aZffJPF68zf",
+            "transaction_id": "PGhnzGbmQjL7VTHmaiyXQE",
+            "tidx": "PGhnzGbmQjL7VTHmaiyXQE",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c531f3979",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c531f3979",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "mxmojyPKCM6aZffJPF68zf"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "mxmojyPKCM6aZffJPF68zf",
+        "transaction_id": "PGhnzGbmQjL7VTHmaiyXQE",
+        "tidx": "PGhnzGbmQjL7VTHmaiyXQE",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c531f3979",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c531f3979",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "mxmojyPKCM6aZffJPF68zf"
+    }
+}{
+    "timestamp": "2025-04-06 20:18:30",
+    "error": "Khalti API error (401): Invalid token header. Token string should not contain spaces.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('mxmojyPKCM6aZff...')\n#1 {main}",
+        "input": {
+            "pidx": "mxmojyPKCM6aZffJPF68zf",
+            "transaction_id": "PGhnzGbmQjL7VTHmaiyXQE",
+            "tidx": "PGhnzGbmQjL7VTHmaiyXQE",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f2c531f3979",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f2c531f3979",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "mxmojyPKCM6aZffJPF68zf"
+            },
+            "payment_error": "Khalti API returned status: 401. Response: {\"detail\":\"Invalid token.\",\"status_code\":401}"
+        }
+    },
+    "session_id": "puc0nu5i6h4ak4emq7n1ij09d2",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "mxmojyPKCM6aZffJPF68zf",
+        "transaction_id": "PGhnzGbmQjL7VTHmaiyXQE",
+        "tidx": "PGhnzGbmQjL7VTHmaiyXQE",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f2c531f3979",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f2c531f3979",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "mxmojyPKCM6aZffJPF68zf"
+    }
+}{
+    "timestamp": "2025-04-07 03:27:29",
+    "error": "Khalti API error (401): Invalid token header. Token string should not contain spaces.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('jGmKCVByW7fD4Zq...')\n#1 {main}",
+        "input": {
+            "pidx": "jGmKCVByW7fD4ZqnmDVkBk",
+            "transaction_id": "U6FybznSFk2ZqCisPjxpn5",
+            "tidx": "U6FybznSFk2ZqCisPjxpn5",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f329e986f54",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f329e986f54",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "jGmKCVByW7fD4ZqnmDVkBk"
+            }
+        }
+    },
+    "session_id": "p0a8gthodg475ehqun6lc16i7e",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "jGmKCVByW7fD4ZqnmDVkBk",
+        "transaction_id": "U6FybznSFk2ZqCisPjxpn5",
+        "tidx": "U6FybznSFk2ZqCisPjxpn5",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f329e986f54",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f329e986f54",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "jGmKCVByW7fD4ZqnmDVkBk"
+    }
+}{
+    "timestamp": "2025-04-07 07:16:21",
+    "error": "Khalti API error (401): Invalid token header. Token string should not contain spaces.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(229): verifyKhaltiPayment('WLadJpki6Dq7uGd...')\n#1 {main}",
+        "input": {
+            "pidx": "WLadJpki6Dq7uGdt6yJn4D",
+            "transaction_id": "Y68kaFQHZuH2vfwH7eyymH",
+            "tidx": "Y68kaFQHZuH2vfwH7eyymH",
+            "txnId": "Y68kaFQHZuH2vfwH7eyymH",
+            "amount": "18990000",
+            "total_amount": "18990000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f35f7ebee95",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "189900",
+                "purchase_order_id": "67f35f7ebee95",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "WLadJpki6Dq7uGdt6yJn4D"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "WLadJpki6Dq7uGdt6yJn4D",
+        "transaction_id": "Y68kaFQHZuH2vfwH7eyymH",
+        "tidx": "Y68kaFQHZuH2vfwH7eyymH",
+        "txnId": "Y68kaFQHZuH2vfwH7eyymH",
+        "amount": "18990000",
+        "total_amount": "18990000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f35f7ebee95",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "189900",
+        "purchase_order_id": "67f35f7ebee95",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "WLadJpki6Dq7uGdt6yJn4D"
+    }
+}{
+    "timestamp": "2025-04-07 07:23:08",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('WLadJpki6Dq7uGd...')\n#1 {main}",
+        "input": {
+            "pidx": "WLadJpki6Dq7uGdt6yJn4D",
+            "transaction_id": "Y68kaFQHZuH2vfwH7eyymH",
+            "tidx": "Y68kaFQHZuH2vfwH7eyymH",
+            "txnId": "Y68kaFQHZuH2vfwH7eyymH",
+            "amount": "18990000",
+            "total_amount": "18990000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f35f7ebee95",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "189900",
+                "purchase_order_id": "67f35f7ebee95",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "WLadJpki6Dq7uGdt6yJn4D"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "WLadJpki6Dq7uGdt6yJn4D",
+        "transaction_id": "Y68kaFQHZuH2vfwH7eyymH",
+        "tidx": "Y68kaFQHZuH2vfwH7eyymH",
+        "txnId": "Y68kaFQHZuH2vfwH7eyymH",
+        "amount": "18990000",
+        "total_amount": "18990000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f35f7ebee95",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "189900",
+        "purchase_order_id": "67f35f7ebee95",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "WLadJpki6Dq7uGdt6yJn4D"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:24:18",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:30:24",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(124): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:30:28",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(124): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:31:07",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(124): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:32:48",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:34:25",
+    "error": "Khalti API connection failed: Connection timed out after 15009 milliseconds",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('3Uurezzt2CQLRdK...')\n#1 {main}",
+        "input": {
+            "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+            "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+            "tidx": "WWrnaT6EG6isMPRjvZttx4",
+            "txnId": "WWrnaT6EG6isMPRjvZttx4",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36161a3a27",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ",
+        "transaction_id": "WWrnaT6EG6isMPRjvZttx4",
+        "tidx": "WWrnaT6EG6isMPRjvZttx4",
+        "txnId": "WWrnaT6EG6isMPRjvZttx4",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36161a3a27",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:37:21",
+    "error": "Missing required field: pidx",
+    "context": {
+        "trace": "#0 {main}",
+        "input": [],
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": [],
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:37:29",
+    "error": "Missing required field: pidx",
+    "context": {
+        "trace": "#0 {main}",
+        "input": [],
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": [],
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:37:32",
+    "error": "Missing required field: pidx",
+    "context": {
+        "trace": "#0 {main}",
+        "input": [],
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f36161a3a27",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": [],
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f36161a3a27",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3Uurezzt2CQLRdKvmJ6jSQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:38:38",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('VZvCeoANvo6qyb8...')\n#1 {main}",
+        "input": {
+            "pidx": "VZvCeoANvo6qyb8jciKNAN",
+            "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+            "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+            "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f364bfe17a6",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f364bfe17a6",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "VZvCeoANvo6qyb8jciKNAN"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "VZvCeoANvo6qyb8jciKNAN",
+        "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+        "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+        "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f364bfe17a6",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f364bfe17a6",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "VZvCeoANvo6qyb8jciKNAN"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:40:19",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('VZvCeoANvo6qyb8...')\n#1 {main}",
+        "input": {
+            "pidx": "VZvCeoANvo6qyb8jciKNAN",
+            "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+            "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+            "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f364bfe17a6",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f364bfe17a6",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "VZvCeoANvo6qyb8jciKNAN"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "VZvCeoANvo6qyb8jciKNAN",
+        "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+        "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+        "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f364bfe17a6",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f364bfe17a6",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "VZvCeoANvo6qyb8jciKNAN"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:40:39",
+    "error": "Khalti API connection failed: Connection timed out after 15010 milliseconds",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('VZvCeoANvo6qyb8...')\n#1 {main}",
+        "input": {
+            "pidx": "VZvCeoANvo6qyb8jciKNAN",
+            "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+            "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+            "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f364bfe17a6",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f364bfe17a6",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "VZvCeoANvo6qyb8jciKNAN"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "VZvCeoANvo6qyb8jciKNAN",
+        "transaction_id": "kJZEEszBpDh4sjgTpHf7uU",
+        "tidx": "kJZEEszBpDh4sjgTpHf7uU",
+        "txnId": "kJZEEszBpDh4sjgTpHf7uU",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f364bfe17a6",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f364bfe17a6",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "VZvCeoANvo6qyb8jciKNAN"
+    }
+}
+{
+    "timestamp": "2025-04-07 07:46:15",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('3KCikCkb5nWeasa...')\n#1 {main}",
+        "input": {
+            "pidx": "3KCikCkb5nWeasaMKBiQ56",
+            "transaction_id": "3fkt8KZ4NaLV45jdGmrYxj",
+            "tidx": "3fkt8KZ4NaLV45jdGmrYxj",
+            "txnId": "3fkt8KZ4NaLV45jdGmrYxj",
+            "amount": "12000000",
+            "total_amount": "12000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36676a38d4",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "120000",
+                "purchase_order_id": "67f36676a38d4",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "3KCikCkb5nWeasaMKBiQ56"
+            }
+        }
+    },
+    "session_id": "k1bm43kep0e2nvopjcf25qmg86",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "3KCikCkb5nWeasaMKBiQ56",
+        "transaction_id": "3fkt8KZ4NaLV45jdGmrYxj",
+        "tidx": "3fkt8KZ4NaLV45jdGmrYxj",
+        "txnId": "3fkt8KZ4NaLV45jdGmrYxj",
+        "amount": "12000000",
+        "total_amount": "12000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36676a38d4",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "120000",
+        "purchase_order_id": "67f36676a38d4",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "3KCikCkb5nWeasaMKBiQ56"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:17:01",
+    "error": "Khalti API connection failed: Connection timed out after 15001 milliseconds",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:17:32",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:17:49",
+    "error": "Khalti API connection failed: Connection timed out after 15007 milliseconds",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(227): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:19:54",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:20:11",
+    "error": "Khalti API connection failed: Connection timed out after 15016 milliseconds",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 08:21:48",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('wndAgUaxXJAUj3X...')\n#1 {main}",
+        "input": {
+            "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+            "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+            "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+            "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+            "amount": "18000000",
+            "total_amount": "18000000",
+            "mobile": "98XXXXX001",
+            "status": "Completed",
+            "purchase_order_id": "67f36d87ed508",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "180000",
+                "purchase_order_id": "67f36d87ed508",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+            }
+        }
+    },
+    "session_id": "cl30f727b99mfnsmfr3tq3guhk",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK",
+        "transaction_id": "BLk5AjXPYawFuvuRbsSxQn",
+        "tidx": "BLk5AjXPYawFuvuRbsSxQn",
+        "txnId": "BLk5AjXPYawFuvuRbsSxQn",
+        "amount": "18000000",
+        "total_amount": "18000000",
+        "mobile": "98XXXXX001",
+        "status": "Completed",
+        "purchase_order_id": "67f36d87ed508",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "180000",
+        "purchase_order_id": "67f36d87ed508",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "wndAgUaxXJAUj3XXzWqsHK"
+    }
+}
+{
+    "timestamp": "2025-04-07 14:57:13",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('HVVv5tv248xWuiA...')\n#1 {main}",
+        "input": {
+            "pidx": "HVVv5tv248xWuiAxJ5JntQ",
+            "transaction_id": "WGv2AFgkAULngU6qVVhNGa",
+            "tidx": "WGv2AFgkAULngU6qVVhNGa",
+            "txnId": "WGv2AFgkAULngU6qVVhNGa",
+            "amount": "6000000",
+            "total_amount": "6000000",
+            "mobile": "98XXXXX005",
+            "status": "Completed",
+            "purchase_order_id": "67f3cb8e3e8f8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "60000",
+                "purchase_order_id": "67f3cb8e3e8f8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "HVVv5tv248xWuiAxJ5JntQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "HVVv5tv248xWuiAxJ5JntQ",
+        "transaction_id": "WGv2AFgkAULngU6qVVhNGa",
+        "tidx": "WGv2AFgkAULngU6qVVhNGa",
+        "txnId": "WGv2AFgkAULngU6qVVhNGa",
+        "amount": "6000000",
+        "total_amount": "6000000",
+        "mobile": "98XXXXX005",
+        "status": "Completed",
+        "purchase_order_id": "67f3cb8e3e8f8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "60000",
+        "purchase_order_id": "67f3cb8e3e8f8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "HVVv5tv248xWuiAxJ5JntQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:11:33",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('vm9fBHDUFUnULX9...')\n#1 {main}",
+        "input": {
+            "pidx": "vm9fBHDUFUnULX9CJrVodZ",
+            "transaction_id": "7G7mBsrZm2z2gsZ2fqw2cE",
+            "tidx": "7G7mBsrZm2z2gsZ2fqw2cE",
+            "txnId": "7G7mBsrZm2z2gsZ2fqw2cE",
+            "amount": "60000",
+            "total_amount": "60000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3ceefdcd0a",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "600",
+                "purchase_order_id": "67f3ceefdcd0a",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "vm9fBHDUFUnULX9CJrVodZ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "vm9fBHDUFUnULX9CJrVodZ",
+        "transaction_id": "7G7mBsrZm2z2gsZ2fqw2cE",
+        "tidx": "7G7mBsrZm2z2gsZ2fqw2cE",
+        "txnId": "7G7mBsrZm2z2gsZ2fqw2cE",
+        "amount": "60000",
+        "total_amount": "60000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3ceefdcd0a",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "600",
+        "purchase_order_id": "67f3ceefdcd0a",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "vm9fBHDUFUnULX9CJrVodZ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:31:44",
+    "error": "Error verifying payment: {\"detail\":\"You do not have permission to perform this action.\",\"status_code\":403}",
+    "context": [],
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9"
+}
+{
+    "timestamp": "2025-04-07 15:31:44",
+    "error": "Khalti API error: {\"detail\":\"You do not have permission to perform this action.\",\"status_code\":403}",
+    "context": {
+        "pidx": "XqN2os5o3gRx8ynfVNsP9Q",
+        "transaction_id": "7WwQua8pMT9c7qCWddTNZc",
+        "tidx": "7WwQua8pMT9c7qCWddTNZc",
+        "txnId": "7WwQua8pMT9c7qCWddTNZc",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d3a47f744",
+        "purchase_order_name": "Order from sita"
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9"
+}
+{
+    "timestamp": "2025-04-07 15:37:56",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(225): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:39:06",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(225): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:39:08",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(225): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:39:08",
+    "error": "Khalti API error (401): Invalid token.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(225): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:39:33",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 15:39:36",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('Hk4ahN7zJDFKo3n...')\n#1 {main}",
+        "input": {
+            "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+            "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3d51c7cee8",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3d51c7cee8",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ",
+        "transaction_id": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "tidx": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "txnId": "SQcXfh7Z7kn9bCGw3TmJi9",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3d51c7cee8",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3d51c7cee8",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "Hk4ahN7zJDFKo3n27z6KcQ"
+    }
+}
+{
+    "timestamp": "2025-04-07 17:09:22",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('6SgkQNJembDYBjf...')\n#1 {main}",
+        "input": {
+            "pidx": "6SgkQNJembDYBjfL8uVxgY",
+            "transaction_id": "9xmtxAKHFbA2c8BVx2A8xj",
+            "tidx": "9xmtxAKHFbA2c8BVx2A8xj",
+            "txnId": "9xmtxAKHFbA2c8BVx2A8xj",
+            "amount": "60000",
+            "total_amount": "60000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3ea8232056",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "600",
+                "purchase_order_id": "67f3ea8232056",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "6SgkQNJembDYBjfL8uVxgY"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "6SgkQNJembDYBjfL8uVxgY",
+        "transaction_id": "9xmtxAKHFbA2c8BVx2A8xj",
+        "tidx": "9xmtxAKHFbA2c8BVx2A8xj",
+        "txnId": "9xmtxAKHFbA2c8BVx2A8xj",
+        "amount": "60000",
+        "total_amount": "60000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3ea8232056",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "600",
+        "purchase_order_id": "67f3ea8232056",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "6SgkQNJembDYBjfL8uVxgY"
+    }
+}
+{
+    "timestamp": "2025-04-07 18:00:09",
+    "error": "Khalti API error (403): You do not have permission to perform this action.",
+    "context": {
+        "trace": "#0 C:\\xampp1\\htdocs\\SmartTech Hub\\component\\payment_response.php(226): verifyKhaltiPayment('QAAPaHkcR8Kr6Gf...')\n#1 {main}",
+        "input": {
+            "pidx": "QAAPaHkcR8Kr6Gfy4dhNNn",
+            "transaction_id": "zuaDAhMLSwscRBbTZTJdYY",
+            "tidx": "zuaDAhMLSwscRBbTZTJdYY",
+            "txnId": "zuaDAhMLSwscRBbTZTJdYY",
+            "amount": "210000",
+            "total_amount": "210000",
+            "mobile": "98XXXXX000",
+            "status": "Completed",
+            "purchase_order_id": "67f3f66f0ccec",
+            "purchase_order_name": "Order from sita"
+        },
+        "session": {
+            "id": "11",
+            "role": "user",
+            "order_details": {
+                "amount": "2100",
+                "purchase_order_id": "67f3f66f0ccec",
+                "user_id": "11",
+                "customer_info": {
+                    "name": "sita",
+                    "email": "sita333@gmail.com",
+                    "phone": "9800000000",
+                    "address": "madhumalla"
+                },
+                "pidx": "QAAPaHkcR8Kr6Gfy4dhNNn"
+            }
+        }
+    },
+    "session_id": "0gpkm8sl4lqub748a5fn1g94c9",
+    "request_method": "GET",
+    "request_data": {
+        "pidx": "QAAPaHkcR8Kr6Gfy4dhNNn",
+        "transaction_id": "zuaDAhMLSwscRBbTZTJdYY",
+        "tidx": "zuaDAhMLSwscRBbTZTJdYY",
+        "txnId": "zuaDAhMLSwscRBbTZTJdYY",
+        "amount": "210000",
+        "total_amount": "210000",
+        "mobile": "98XXXXX000",
+        "status": "Completed",
+        "purchase_order_id": "67f3f66f0ccec",
+        "purchase_order_name": "Order from sita"
+    },
+    "input_data": "",
+    "session_data": {
+        "amount": "2100",
+        "purchase_order_id": "67f3f66f0ccec",
+        "user_id": "11",
+        "customer_info": {
+            "name": "sita",
+            "email": "sita333@gmail.com",
+            "phone": "9800000000",
+            "address": "madhumalla"
+        },
+        "pidx": "QAAPaHkcR8Kr6Gfy4dhNNn"
+    }
+}

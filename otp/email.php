@@ -20,7 +20,7 @@ function send_otp($to, $subject, $content) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'magarbarsha333@gmail.com'; // Your email
-        $mail->Password = 'vcbbvlvkxbffjdtz'; // Your App Password (Do not use your real password)
+        $mail->Password = 'gttdvwbxdvdpflqs'; // Your App Password (Do not use your real password)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 

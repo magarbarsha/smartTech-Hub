@@ -2,14 +2,14 @@
 session_start();
 require_once '../includes/config.php';
 
-// Enhanced error reporting
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', '../logs/payment_errors.log');
-error_reporting(E_ALL);
+// Create logs directory if it doesn't exist
+$logDir = '../logs';
+if (!file_exists($logDir)) {
+    mkdir($logDir, 0777, true);
+}
 
 /**
- * Enhanced error logging with context
+ * Log payment errors with context
  */
 function logPaymentError($message, $context = []) {
     $logData = [
@@ -17,34 +17,42 @@ function logPaymentError($message, $context = []) {
         'error' => $message,
         'context' => $context,
         'session_id' => session_id(),
-        'request' => $_GET,
+        'request_method' => $_SERVER['REQUEST_METHOD'],
+        'request_data' => $_REQUEST,
+        'input_data' => file_get_contents('php://input'),
         'session_data' => $_SESSION['order_details'] ?? null,
-        'backtrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
     ];
-    error_log(json_encode($logData, JSON_PRETTY_PRINT), 3, '../logs/payment_processor.log');
+    
+    $logFile = '../logs/payment_processor.log';
+    if (!file_exists($logFile)) {
+        file_put_contents($logFile, '');
+        chmod($logFile, 0666);
+    }
+    
+    error_log(json_encode($logData, JSON_PRETTY_PRINT) . PHP_EOL, 3, $logFile);
 }
 
 /**
- * Verify Khalti payment with retry mechanism
+ * Verify Khalti payment (Test Environment Only)
  */
 function verifyKhaltiPayment($pidx) {
-    $apiUrl = "https://a.khalti.com/api/v2/epayment/lookup/";
-    $secretKey = '3da50215902547fa9b0b928e7fe7ab7b'; // Use your actual key
-    
-    $payload = json_encode(['pidx' => $pidx]);
+    // Test environment configuration only
+    $apiUrl = 'https://a.khalti.com/api/v2/payment/status/';
+    $secretKey = '16a9c2d3c62f447094e41784cb689de8'; // Fixed: Removed space after "test_secret_key"
+   
     
     $ch = curl_init();
     curl_setopt_array($ch, [
         CURLOPT_URL => $apiUrl,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => json_encode(['pidx' => $pidx]),
         CURLOPT_HTTPHEADER => [
-            'Authorization: key ' . $secretKey,
+            'Authorization: Key ' . $secretKey,
             'Content-Type: application/json',
         ],
-        CURLOPT_TIMEOUT => 10,
-        CURLOPT_CONNECTTIMEOUT => 5,
+        CURLOPT_TIMEOUT => 15,
+        CURLOPT_SSL_VERIFYPEER => true,
     ]);
     
     $response = curl_exec($ch);
@@ -53,343 +61,204 @@ function verifyKhaltiPayment($pidx) {
     curl_close($ch);
     
     if ($error) {
-        logPaymentError("Khalti API connection failed", ['error' => $error]);
-        throw new RuntimeException("Payment verification failed: Connection error");
+        throw new RuntimeException("Khalti API connection failed: " . $error);
     }
     
     if ($httpCode !== 200) {
-        logPaymentError("Khalti API returned non-200 status", [
-            'code' => $httpCode, 
-            'response' => $response,
-            'pidx' => $pidx
-        ]);
-        throw new RuntimeException("Payment verification failed: API returned $httpCode");
+        $errorResponse = @json_decode($response, true);
+        $errorDetail = $errorResponse['detail'] ?? $response;
+        throw new RuntimeException("Khalti API error ($httpCode): " . $errorDetail);
     }
     
     $data = json_decode($response, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        logPaymentError("Failed to parse Khalti response", [
-            'error' => json_last_error_msg(),
-            'response' => $response
-        ]);
-        throw new RuntimeException("Payment verification failed: Invalid response format");
+        throw new RuntimeException("Invalid Khalti response format");
+    }
+    
+    if (!isset($data['status']) || $data['status'] !== 'Completed') {
+        throw new RuntimeException("Payment not completed. Status: " . ($data['status'] ?? 'Unknown'));
     }
     
     return $data;
 }
 
 /**
- * Validate and process payment parameters
+ * Process the order after successful payment
  */
-function validateAndProcessPayment($params) {
-    // Required fields validation
-    $requiredFields = ['pidx', 'transaction_id', 'amount', 'purchase_order_id'];
-    foreach ($requiredFields as $field) {
-        if (empty($params[$field])) {
-            throw new InvalidArgumentException("Missing required field: $field");
-        }
-    }
-    
-    // Numeric validation for amount
-    if (!is_numeric($params['amount']) || $params['amount'] <= 0) {
-        throw new InvalidArgumentException("Invalid payment amount: " . $params['amount']);
-    }
-    
-    // Return sanitized values
-    return [
-        'pidx' => filter_var($params['pidx'], FILTER_SANITIZE_STRING),
-        'transaction_id' => filter_var($params['transaction_id'], FILTER_SANITIZE_STRING),
-        'amount' => (float)($params['amount'] / 100), // Convert to rupees
-        'purchase_order_id' => filter_var($params['purchase_order_id'], FILTER_SANITIZE_STRING)
-    ];
-}
-
-/**
- * Process order and handle database operations
- */
-function processOrder($conn, $validatedParams, $userData) {
-    // Validate user data structure
-    if (!isset($userData['user_id']) || !isset($userData['customer_info'])) {
-        throw new RuntimeException("Invalid user data structure");
-    }
-    
-    // Generate unique order number
-    $orderNumber = 'ORD-' . time() . '-' . substr(bin2hex(random_bytes(4)), 0, 8);
-    
-    $conn->autocommit(FALSE);
-    $conn->query("SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED");
+function processOrder($conn, $user_id, $payment_data) {
     $conn->begin_transaction();
     
     try {
-        // Insert order record
-        $orderStmt = $conn->prepare("INSERT INTO orders1 (
-            order_number, user_id, ordered_date, order_status,
-            total_amount, delivery_name, delivery_email,
-            delivery_phone, delivery_address, payment_method,
-            transaction_id, pidx
-        ) VALUES (?, ?, NOW(), 'Pending', ?, ?, ?, ?, ?, 'Khalti', ?, ?)");
+        // 1. Create the order
+        $order_number = 'ORD-' . time() . '-' . bin2hex(random_bytes(3));
+        $stmt = $conn->prepare("INSERT INTO orders1 (
+            order_number, user_id, ordered_date, order_status, 
+            total_amount, payment_method, transaction_id
+        ) VALUES (?, ?, NOW(), 'Pending', ?, 'Khalti', ?)");
         
-        if (!$orderStmt) {
+        if (!$stmt) {
             throw new RuntimeException("Failed to prepare order statement: " . $conn->error);
         }
         
-        $bindResult = $orderStmt->bind_param(
-            "sidssssss",
-            $orderNumber,
-            $userData['user_id'],
-            $validatedParams['amount'],
-            $userData['customer_info']['name'],
-            $userData['customer_info']['email'],
-            $userData['customer_info']['phone'],
-            $userData['customer_info']['address'],
-            $validatedParams['transaction_id'],
-            $validatedParams['pidx']
+        $stmt->bind_param(
+            "sids", 
+            $order_number,
+            $user_id,
+            $payment_data['amount'],
+            $payment_data['transaction_id']
         );
         
-        if (!$bindResult) {
-            throw new RuntimeException("Failed to bind order parameters: " . $orderStmt->error);
+        if (!$stmt->execute()) {
+            throw new RuntimeException("Failed to create order: " . $stmt->error);
         }
         
-        if (!$orderStmt->execute()) {
-            throw new RuntimeException("Failed to execute order statement: " . $orderStmt->error);
-        }
+        $order_id = $conn->insert_id;
+        $stmt->close();
         
-        $orderId = $conn->insert_id;
-        $orderStmt->close();
+        // 2. Process cart items
+        $cart_query = "SELECT c.*, p.price, p.product_name, p.stock_quantity 
+                      FROM card_tbl c
+                      JOIN prod p ON c.product_id = p.id
+                      WHERE c.user_id = ?";
         
-        // Process cart items with stock validation
-        $cartQuery = "SELECT c.*, p.price, p.product_name, p.stock_quantity 
-                     FROM card_tbl c
-                     JOIN prod p ON c.product_id = p.id
-                     WHERE c.user_id = ?
-                     FOR UPDATE";
+        $stmt = $conn->prepare($cart_query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $cart_items = $stmt->get_result();
         
-        $cartStmt = $conn->prepare($cartQuery);
-        if (!$cartStmt) {
-            throw new RuntimeException("Failed to prepare cart statement: " . $conn->error);
-        }
+        $total_items = 0;
+        $item_stmt = $conn->prepare("INSERT INTO order_items1 (
+            order_id, product_id, ordered_quantity, product_rate, product_name
+        ) VALUES (?, ?, ?, ?, ?)");
         
-        if (!$cartStmt->bind_param("i", $userData['user_id']) || !$cartStmt->execute()) {
-            throw new RuntimeException("Failed to retrieve cart items: " . $cartStmt->error);
-        }
+        $stock_stmt = $conn->prepare("UPDATE prod SET stock_quantity = stock_quantity - ? 
+                                    WHERE id = ? AND stock_quantity >= ?");
         
-        $cartItems = $cartStmt->get_result();
-        $cartStmt->close();
-        
-        if ($cartItems->num_rows === 0) {
-            throw new RuntimeException("No items found in cart for user: " . $userData['user_id']);
-        }
-        
-        $itemStmt = $conn->prepare("
-            INSERT INTO order_items1 (
-                order_id, product_id, orderd_quantity,
-                product_rate, product_name
-            ) VALUES (?, ?, ?, ?, ?)
-        ");
-        
-        if (!$itemStmt) {
-            throw new RuntimeException("Failed to prepare item statement: " . $conn->error);
-        }
-        
-        $stockStmt = $conn->prepare("
-            UPDATE prod SET stock_quantity = stock_quantity - ? 
-            WHERE id = ? AND stock_quantity >= ?
-        ");
-        
-        if (!$stockStmt) {
-            throw new RuntimeException("Failed to prepare stock statement: " . $conn->error);
-        }
-        
-        $totalItems = 0;
-        $outOfStockItems = [];
-        
-        while ($item = $cartItems->fetch_assoc()) {
-            logPaymentError("Processing cart item", [
-                'product_id' => $item['product_id'],
-                'requested_quantity' => $item['product_quantity'],
-                'available_stock' => $item['stock_quantity']
-            ]);
-            
+        while ($item = $cart_items->fetch_assoc()) {
+            // Check stock
             if ($item['stock_quantity'] < $item['product_quantity']) {
-                $outOfStockItems[] = [
-                    'product_id' => $item['product_id'],
-                    'requested' => $item['product_quantity'],
-                    'available' => $item['stock_quantity']
-                ];
-                continue;
+                throw new RuntimeException("Insufficient stock for product: " . $item['product_name']);
             }
             
-            // Insert order item
-            $bindResult = $itemStmt->bind_param(
-                "iiids", 
-                $orderId, 
-                $item['product_id'], 
-                $item['product_quantity'], 
-                $item['price'], 
+            // Add order item
+            $item_stmt->bind_param(
+                "iiids",
+                $order_id,
+                $item['product_id'],
+                $item['product_quantity'],
+                $item['price'],
                 $item['product_name']
             );
-            
-            if (!$bindResult || !$itemStmt->execute()) {
-                throw new RuntimeException("Failed to insert order item: " . $itemStmt->error);
-            }
+            $item_stmt->execute();
             
             // Update stock
-            $bindResult = $stockStmt->bind_param(
-                "iii", 
-                $item['product_quantity'], 
-                $item['product_id'], 
+            $stock_stmt->bind_param(
+                "iii",
+                $item['product_quantity'],
+                $item['product_id'],
                 $item['product_quantity']
             );
+            $stock_stmt->execute();
             
-            if (!$bindResult || !$stockStmt->execute()) {
-                throw new RuntimeException("Failed to update stock: " . $stockStmt->error);
-            }
-            
-            if ($stockStmt->affected_rows === 0) {
-                throw new RuntimeException("Stock update failed for product: " . $item['product_id']);
-            }
-            
-            $totalItems++;
+            $total_items++;
         }
         
-        $itemStmt->close();
-        $stockStmt->close();
+        // 3. Update order with item count
+        $update_stmt = $conn->prepare("UPDATE orders1 SET total_items = ? WHERE id = ?");
+        $update_stmt->bind_param("ii", $total_items, $order_id);
+        $update_stmt->execute();
         
-        if (!empty($outOfStockItems)) {
-            logPaymentError("Some items were out of stock", [
-                'out_of_stock_items' => $outOfStockItems,
-                'order_id' => $orderId
-            ]);
-        }
+        // 4. Clear cart
+        $clear_cart = $conn->prepare("DELETE FROM card_tbl WHERE user_id = ?");
+        $clear_cart->bind_param("i", $user_id);
+        $clear_cart->execute();
         
-        if ($totalItems === 0) {
-            throw new RuntimeException("No items could be processed - all out of stock");
-        }
-        
-        // Update order with item count
-        $updateStmt = $conn->prepare("UPDATE orders1 SET total_items = ? WHERE id = ?");
-        if (!$updateStmt || !$updateStmt->bind_param("ii", $totalItems, $orderId) || !$updateStmt->execute()) {
-            throw new RuntimeException("Failed to update order item count: " . ($updateStmt->error ?? $conn->error));
-        }
-        $updateStmt->close();
-        
-        // Clear processed cart items
-        $clearCartStmt = $conn->prepare("DELETE FROM card_tbl WHERE user_id = ?");
-        if (!$clearCartStmt || !$clearCartStmt->bind_param("i", $userData['user_id']) || !$clearCartStmt->execute()) {
-            throw new RuntimeException("Failed to clear cart: " . ($clearCartStmt->error ?? $conn->error));
-        }
-        $clearCartStmt->close();
-        
-        if (!$conn->commit()) {
-            throw new RuntimeException("Commit failed: " . $conn->error);
-        }
+        $conn->commit();
         
         return [
-            'order_id' => $orderId,
-            'order_number' => $orderNumber,
-            'amount' => $validatedParams['amount'],
-            'transaction_id' => $validatedParams['transaction_id'],
-            'total_items' => $totalItems
+            'order_id' => $order_id,
+            'order_number' => $order_number,
+            'total_amount' => $payment_data['amount'],
+            'transaction_id' => $payment_data['transaction_id']
         ];
         
     } catch (Exception $e) {
         $conn->rollback();
-        logPaymentError("Transaction rolled back", [
-            'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString(),
-            'order_number' => $orderNumber ?? null,
-            'order_id' => $orderId ?? null
-        ]);
         throw $e;
-    } finally {
-        $conn->autocommit(TRUE);
     }
 }
 
-// Main execution flow
+// Main execution
 try {
+    // Debugging: Log the incoming request
+    error_log("Incoming payment response: " . json_encode($_REQUEST));
+    
     // Validate request method
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-        throw new RuntimeException("Invalid request method - expected GET");
+    if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'GET'])) {
+        throw new RuntimeException("Invalid request method. Only POST or GET allowed.");
     }
     
-    // Check session data exists and has required structure
-    if (empty($_SESSION['order_details'])) {
-        throw new RuntimeException("Session expired or invalid - missing order_details");
+    // Get input data
+    $input = ($_SERVER['REQUEST_METHOD'] === 'POST') ? 
+        (json_decode(file_get_contents('php://input'), true) ?: $_POST) : 
+        $_GET;
+    
+    // Validate required fields
+    $requiredFields = ['pidx', 'total_amount', 'tidx'];
+    foreach ($requiredFields as $field) {
+        if (empty($input[$field])) {
+            throw new RuntimeException("Missing required field: $field");
+        }
     }
     
-    if (!isset($_SESSION['order_details']['user_id']) || !isset($_SESSION['order_details']['customer_info'])) {
-        throw new RuntimeException("Invalid session data structure");
+    if (!is_numeric($input['total_amount']) || $input['total_amount'] <= 0) {
+        throw new RuntimeException("Invalid payment amount");
     }
     
-    // Log the incoming request for debugging
-    logPaymentError("Payment response received", [
-        'get_params' => $_GET,
-        'session_user_id' => $_SESSION['order_details']['user_id']
-    ]);
+    if (empty($_SESSION['id'])) {
+        throw new RuntimeException("User session not found. Please login again.");
+    }
     
-    // Validate and process payment parameters
-    $validatedParams = validateAndProcessPayment($_GET);
+    // Convert amount from paisa to rupees
+    $amount = $input['total_amount'] / 100;
     
     // Verify payment with Khalti
-    $verification = verifyKhaltiPayment($validatedParams['pidx']);
-    if ($verification['status'] !== 'Completed') {
-        throw new RuntimeException("Payment not completed: " . ($verification['status'] ?? 'unknown'));
-    }
+    $verification = verifyKhaltiPayment($input['pidx']);
     
-    // Process the order
-    $orderData = processOrder($conn, $validatedParams, $_SESSION['order_details']);
-    
-    // Prepare success response
-    $_SESSION['order_success'] = [
-        'order_id' => $orderData['order_id'],
-        'order_number' => $orderData['order_number'],
-        'amount' => $orderData['amount'],
-        'transaction_id' => $orderData['transaction_id'],
-        'payment_status' => 'Completed'
-    ];
-    
-    // Clear session data
-    unset($_SESSION['order_details']);
-    
-    // Log successful order processing
-    logPaymentError("Order processed successfully", [
-        'order_data' => $orderData,
-        'verification_response' => $verification
+    // Process order
+    $order_data = processOrder($conn, $_SESSION['id'], [
+        'amount' => $amount,
+        'transaction_id' => $input['tidx']
     ]);
     
-    // Redirect to success page
-    header("Location: orderProcess.php");
-    exit();
-    
-} catch (InvalidArgumentException $e) {
-    logPaymentError("Validation error", [
-        'error' => $e->getMessage(),
-        'get_params' => $_GET,
-        'session_data' => $_SESSION['order_details'] ?? null
+    // Return success response
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => true,
+        'message' => 'Payment processed successfully',
+        'order_id' => $order_data['order_id'],
+        'order_number' => $order_data['order_number'],
+        'amount_paid' => number_format($amount, 2),
+        'transaction_id' => $order_data['transaction_id'],
+        'payment_status' => 'completed'
     ]);
-    $_SESSION['error'] = "Invalid payment details. Please try again.";
-    header("Location: checkoutpage.php");
-    exit();
-    
-} catch (RuntimeException $e) {
-    logPaymentError("Processing error", [
-        'error' => $e->getMessage(),
-        'trace' => $e->getTraceAsString(),
-        'transaction_id' => $_GET['transaction_id'] ?? null,
-        'session_data' => $_SESSION['order_details'] ?? null
-    ]);
-    $_SESSION['error'] = "Order processing failed. Reference: " . ($_GET['transaction_id'] ?? 'unknown');
-    header("Location: checkoutpage.php");
-    exit();
     
 } catch (Exception $e) {
-    logPaymentError("System error", [
-        'error' => $e->getMessage(),
+    logPaymentError($e->getMessage(), [
         'trace' => $e->getTraceAsString(),
-        'transaction_id' => $_GET['transaction_id'] ?? null
+        'input' => $input ?? null,
+        'session' => $_SESSION ?? null
     ]);
-    $_SESSION['error'] = "A system error occurred. Please contact support.";
-    header("Location: checkoutpage.php");
-    exit();
+    
+    header('Content-Type: application/json');
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => $e->getMessage(),
+        'error_type' => 'payment_processing_error',
+        'debug_info' => [
+            'timestamp' => date('Y-m-d H:i:s'),
+            'request_method' => $_SERVER['REQUEST_METHOD']
+        ]
+    ]);
 }

@@ -1,0 +1,10 @@
+[06-Apr-2025 19:34:55 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 19:37:46 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 19:38:40 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 19:50:38 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 19:55:47 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 20:01:06 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 20:07:35 Europe/Berlin] Incoming request method: GET
+[06-Apr-2025 20:13:32 Europe/Berlin] Incoming payment response: {"pidx":"SkfHkQdsiE3G5gYLc6jttE","transaction_id":"Xt3YVV3gRwHwoPhsFJVTL3","tidx":"Xt3YVV3gRwHwoPhsFJVTL3","total_amount":"6000000","mobile":"98XXXXX001","status":"Completed","purchase_order_id":"67f2c42e6ae74","purchase_order_name":"Order from sita"}
+[06-Apr-2025 20:14:19 Europe/Berlin] Incoming payment response: {"pidx":"SkfHkQdsiE3G5gYLc6jttE","transaction_id":"Xt3YVV3gRwHwoPhsFJVTL3","tidx":"Xt3YVV3gRwHwoPhsFJVTL3","total_amount":"6000000","mobile":"98XXXXX001","status":"Completed","purchase_order_id":"67f2c42e6ae74","purchase_order_name":"Order from sita"}
+[06-Apr-2025 20:15:29 Europe/Berlin] Incoming payment response: {"pidx":"SkfHkQdsiE3G5gYLc6jttE","transaction_id":"Xt3YVV3gRwHwoPhsFJVTL3","tidx":"Xt3YVV3gRwHwoPhsFJVTL3","total_amount":"6000000","mobile":"98XXXXX001","status":"Completed","purchase_order_id":"67f2c42e6ae74","purchase_order_name":"Order from sita"}

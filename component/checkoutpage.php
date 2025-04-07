@@ -35,6 +35,49 @@ $finalTotal = $totalAmount + $shippingCharge;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
     <style>
+        /* Previous CSS remains the same, just adding new styles for COD option */
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary);
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+        
+        .payment-method input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .payment-method-label {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .payment-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .khalti-icon {
+            color: #5C2D91;
+        }
+        
+        .cod-icon {
+            color: var(--success);
+        }
         :root {
             --primary: #007bff;
             --primary-dark: #0069d9;
@@ -341,6 +384,8 @@ $finalTotal = $totalAmount + $shippingCharge;
                 max-height: 200px;
             }
         }
+        
+        /* Rest of your existing CSS remains the same */
     </style>
 </head>
 
@@ -390,11 +435,28 @@ $finalTotal = $totalAmount + $shippingCharge;
                 
                 <div class="payment-section">
                     <h3 class="section-title"><i class="fas fa-credit-card"></i> Payment Method</h3>
+                    
                     <div class="payment-options">
-                        <button type="submit" name="submit" class="payment-btn">
-                            <i class="fas fa-wallet"></i> Pay with Khalti (₹<?php echo number_format($finalTotal, 2) ?>)
-                        </button>
+                        <label class="payment-method">
+                            <input type="radio" name="payment_method" value="khalti" checked>
+                            <span class="payment-method-label">
+                                <i class="fas fa-wallet payment-icon khalti-icon"></i>
+                                <span>Pay with Khalti</span>
+                            </span>
+                        </label>
+                        
+                        <label class="payment-method">
+                            <input type="radio" name="payment_method" value="cod">
+                            <span class="payment-method-label">
+                                <i class="fas fa-money-bill-wave payment-icon cod-icon"></i>
+                                <span>Cash on Delivery (COD)</span>
+                            </span>
+                        </label>
                     </div>
+                    
+                    <button type="submit" name="submit" class="payment-btn" id="submitBtn">
+                        <i class="fas fa-wallet"></i> Proceed to Payment (₹<?php echo number_format($finalTotal, 2) ?>)
+                    </button>
                 </div>
             </form>
         </div>
@@ -465,46 +527,55 @@ $finalTotal = $totalAmount + $shippingCharge;
     
     <?php include 'footer.php'; ?>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Update totals when quantity changes
-            function updateTotals() {
-                let total = 0;
-                document.querySelectorAll(".order-item").forEach(item => {
-                    const price = parseFloat(item.querySelector(".item-price").innerText.replace("₹", "").replace(",", ""));
-                    const quantity = parseInt(item.querySelector(".quantity-input").value);
-                    const itemTotal = price * quantity;
-                    total += itemTotal;
-                });
-                
-                document.getElementById("cart-total").innerText = total.toFixed(2);
-                const shipping = parseFloat(document.getElementById("shipping").innerText);
-                const finalTotal = total + shipping;
-                document.getElementById("final-total").innerText = finalTotal.toFixed(2);
-                document.querySelector("input[name='amount']").value = finalTotal * 100;
-            }
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Handle form submission based on payment method
+    const paymentForm = document.getElementById('paymentForm');
+    paymentForm.addEventListener('submit', function(e) {
+        if (document.querySelectorAll(".order-item").length === 0) {
+            e.preventDefault();
+            alert("Your cart is empty. Please add products before checkout.");
+            return;
+        }
+        
+        const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+        const submitBtn = document.getElementById('submitBtn');
+        
+        if (selectedMethod === 'cod') {
+            e.preventDefault(); // Prevent default form submission
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
             
-            // Initialize totals
-            updateTotals();
+            // Create a hidden form and submit to orderConfirmation.php
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'post';
+            hiddenForm.action = 'orderConfirmation.php';
             
-            // Add event listeners for quantity changes
-            document.querySelectorAll(".quantity-input").forEach(input => {
-                input.addEventListener("change", updateTotals);
+            // Copy all input values from the original form
+            const inputs = paymentForm.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                const clone = input.cloneNode();
+                if (input.type !== 'radio' || input.checked) {
+                    hiddenForm.appendChild(clone);
+                }
             });
+
+            // Explicitly add payment method as COD
+            const paymentInput = document.createElement('input');
+            paymentInput.type = 'hidden';
+            paymentInput.name = 'payment_method';
+            paymentInput.value = 'cod';
+            hiddenForm.appendChild(paymentInput);
             
-            // Add animation to payment button
-            const paymentBtn = document.querySelector('.payment-btn');
-            if (paymentBtn) {
-                paymentBtn.addEventListener('click', function(e) {
-                    if (document.querySelectorAll(".order-item").length === 0) {
-                        e.preventDefault();
-                        alert("Your cart is empty. Please add products before checkout.");
-                        return;
-                    }
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
-                });
-            }
-        });
-    </script>
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+        } else {
+            // For Khalti, proceed normally to pay.php
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+            paymentForm.action = 'pay.php';
+        }
+    });
+});
+
+ </script>
 </body>
 </html>
